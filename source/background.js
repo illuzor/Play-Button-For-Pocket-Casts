@@ -1,4 +1,4 @@
-﻿var pcTabs; // pocket casts tabs array
+﻿﻿var pcTabs; // pocket casts tabs array
 
 chrome.browserAction.onClicked.addListener(buttonClick);
 
@@ -14,16 +14,18 @@ function getWindows(windows) {
 				pcTabs.push(windows[i].tabs[j]);
 		}
 	}
-	if (pcTabs.length == 0) {
-		// TODO replace alert to popup
-		alert("play.pocketcasts.com tab is not opened");
-	} else {
+	if (pcTabs.length) {
 		chrome.tabs.executeScript(pcTabs[0].id, { file : "jquery.js" }, onJqueryExecuted);
+	} else {
+		// TODO maybe change alert to something else
+		alert("play.pocketcasts.com tab is not opened");
 	}
 }
 
 function onJqueryExecuted(result) {
-	chrome.tabs.executeScript(pcTabs[0].id, { file : "main.js" }, onMainExecuted);
+	chrome.tabs.executeScript(pcTabs[0].id, {
+		file : "main.js"
+	}, onMainExecuted);
 }
 
 function onMainExecuted(result) {
@@ -40,7 +42,7 @@ function onMainExecuted(result) {
 		chrome.browserAction.setIcon({ path : iconPath }, null);
 		chrome.browserAction.setTitle({ title : iconText });
 	} else { // player_hidden
-		// TODO replace alert to popup
+		// TODO maybe change alert to something else
 		alert("Player is not enabled.\nStart to listen any podcast.\nPlayer must de displayed on page bottom.");
 	}
 }
