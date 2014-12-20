@@ -15,6 +15,7 @@ function getWindows(windows) {
 		}
 	}
 	if (pcTabs.length == 0) {
+		// TODO replace alert to popup
 		alert("play.pocketcasts.com tab is not opened");
 	} else {
 		chrome.tabs.executeScript(pcTabs[0].id, { file : "jquery.js" }, onJqueryExecuted);
@@ -39,6 +40,7 @@ function onMainExecuted(result) {
 		chrome.browserAction.setIcon({ path : iconPath }, null);
 		chrome.browserAction.setTitle({ title : iconText });
 	} else { // player_hidden
+		// TODO replace alert to popup
 		alert("Player is not enabled.\nStart to listen any podcast.\nPlayer must de displayed on page bottom.");
 	}
 }
