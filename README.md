@@ -3,6 +3,6 @@ Play-Button-For-Pocket-Casts
 
 Chrome Extension
 
-Simple play/pause button for Pocket Casts. This button allows to pause or resume current podcasts independently of current tab or current window. For correct extension work make sure that the Pocket Casts tab is open and podcast is started (player is displayed on bottom of page).
+Simple play/pause button for Pocket Casts. This button allows to pause or resume current podcasts independently of current tab or current window. If Pocket Casts site is not open, it will be open by click on the extension icon.
 
 ![pc_screenshot.png](http://download.illuzor.com/images/github/pc_screenshot.png)

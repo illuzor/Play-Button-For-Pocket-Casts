@@ -17,15 +17,12 @@ function getWindows(windows) {
 	if (pcTabs.length) {
 		chrome.tabs.executeScript(pcTabs[0].id, { file : "jquery.js" }, onJqueryExecuted);
 	} else {
-		// TODO maybe change alert to something else
-		alert("play.pocketcasts.com tab is not opened");
+		chrome.tabs.create({ url : "https://play.pocketcasts.com/" }, null)
 	}
 }
 
 function onJqueryExecuted(result) {
-	chrome.tabs.executeScript(pcTabs[0].id, {
-		file : "main.js"
-	}, onMainExecuted);
+	chrome.tabs.executeScript(pcTabs[0].id, { file : "main.js" }, onMainExecuted);
 }
 
 function onMainExecuted(result) {
