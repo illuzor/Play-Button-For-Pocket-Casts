@@ -14,19 +14,26 @@ function getWindows(windows) {
 				pcTabs.push(windows[i].tabs[j]);
 		}
 	}
-	if (pcTabs.length) {
-		chrome.tabs.executeScript(pcTabs[0].id, { file : "jquery.js" }, onJqueryExecuted);
-	} else {
+	
+	if (pcTabs.length)
+		chrome.tabs.executeScript(pcTabs[0].id, { file : "main.js" }, onMainExecuted);
+	else
 		chrome.tabs.create({ url : "https://play.pocketcasts.com/" }, null)
-	}
+}
+
+function onMainExecuted(result) {
+	if(result == "jqueryIsNotExists")
+		chrome.tabs.executeScript(pcTabs[0].id, { file : "jquery.js" }, onJqueryExecuted);
+	 else 
+		playPause(result);
 }
 
 function onJqueryExecuted(result) {
 	chrome.tabs.executeScript(pcTabs[0].id, { file : "main.js" }, onMainExecuted);
 }
 
-function onMainExecuted(result) {
-	if (result != "player_hidden") {
+function playPause(result){
+	if (result != "playerIsHidden") {
 		var iconPath;
 		var iconText;
 		if (result == "play") { //  play
@@ -39,7 +46,6 @@ function onMainExecuted(result) {
 		chrome.browserAction.setIcon({ path : iconPath }, null);
 		chrome.browserAction.setTitle({ title : iconText });
 	} else { // player_hidden
-		// TODO maybe change alert to something else
-		alert("Player is not enabled.\nStart to listen any podcast.\nPlayer must de displayed on page bottom.");
+		alert("Player is not enabled.\nStart to listen any podcast.\nPlayer must be displayed at the bottom of page.");
 	}
 }
