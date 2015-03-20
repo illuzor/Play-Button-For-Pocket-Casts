@@ -18,7 +18,7 @@ function getWindows(windows) {
 	if (pcTabs.length)
 		chrome.tabs.executeScript(pcTabs[0].id, { file : "main.js" }, onMainExecuted);
 	else
-		chrome.tabs.create({ url : "https://play.pocketcasts.com/" }, onCreateTab);
+		chrome.tabs.create({ url : "https://play.pocketcasts.com/" }, null);
 }
 
 function onMainExecuted(result) {
@@ -33,7 +33,7 @@ function onJqueryExecuted(result) {
 }
 
 function playPause(result){
-	if (result != "playerIsHidden") {
+	if (result != "nothingToPlay") {
 		var iconPath;
 		var iconText;
 		if (result == "play") { //  play
@@ -45,12 +45,7 @@ function playPause(result){
 		}
 		chrome.browserAction.setIcon({ path : iconPath }, null);
 		chrome.browserAction.setTitle({ title : iconText });
-	} else { // player_hidden
-		alert("Player is not enabled.\nStart to listen any podcast.\nPlayer must be displayed at the bottom of page.");
+	} else { // nothing to play
+		alert("Nothing to play");
 	}
-}
-
-function onCreateTab(tab){
-	pcTabs.push(windows[i].tabs[j]);
-	chrome.tabs.executeScript(tab.id, { file : "main.js" }, onMainExecuted);
 }
