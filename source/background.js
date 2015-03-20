@@ -18,7 +18,7 @@ function getWindows(windows) {
 	if (pcTabs.length)
 		chrome.tabs.executeScript(pcTabs[0].id, { file : "main.js" }, onMainExecuted);
 	else
-		chrome.tabs.create({ url : "https://play.pocketcasts.com/" }, null)
+		chrome.tabs.create({ url : "https://play.pocketcasts.com/" }, onCreateTab);
 }
 
 function onMainExecuted(result) {
@@ -48,4 +48,9 @@ function playPause(result){
 	} else { // player_hidden
 		alert("Player is not enabled.\nStart to listen any podcast.\nPlayer must be displayed at the bottom of page.");
 	}
+}
+
+function onCreateTab(tab){
+	pcTabs.push(windows[i].tabs[j]);
+	chrome.tabs.executeScript(tab.id, { file : "main.js" }, onMainExecuted);
 }
