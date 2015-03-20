@@ -8,6 +8,9 @@ if(typeof jQuery != "undefined") {
 		} else { // if current state is "pause"
 			result = "play";
 		}
+	} else if ($("#episodes_page .episode_row:not(.episode_deleted):last").length) {
+		$("#episodes_page .episode_row:not(.episode_deleted):last .episode_button").trigger("click");
+		result = "pause";
 	} else { // if bottom player is hidden
 		result = "playerIsHidden";
 	}
