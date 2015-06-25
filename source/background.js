@@ -1,6 +1,12 @@
 ﻿﻿var pcTabs; // pocket casts tabs array
 
 chrome.browserAction.onClicked.addListener(buttonClick);
+chrome.commands.onCommand.addListener(mediaButtonPress);
+
+function mediaButtonPress(command){
+	if(command == "play-pause")
+		buttonClick();
+}
 
 function buttonClick() {
 	pcTabs = [];
