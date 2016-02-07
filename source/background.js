@@ -1,14 +1,20 @@
-﻿﻿var pcTabs; // pocket casts tabs array
+﻿var pcTabs; // pocket casts tabs array
+var clickFromMediaKey;
 
 chrome.browserAction.onClicked.addListener(buttonClick);
 chrome.commands.onCommand.addListener(mediaButtonPress);
 
 function mediaButtonPress(command){
 	if(command == "play-pause")
-		buttonClick();
+		gotoGetWindows(true);
 }
 
 function buttonClick() {
+	gotoGetWindows(false);
+}
+
+function gotoGetWindows(fromMediaKey){
+	clickFromMediaKey = fromMediaKey;
 	pcTabs = [];
 	chrome.windows.getAll({ populate : true }, getWindows);
 }
@@ -21,10 +27,11 @@ function getWindows(windows) {
 		}
 	}
 	
-	if (pcTabs.length)
+	if (pcTabs.length){
 		chrome.tabs.executeScript(pcTabs[0].id, { file : "main.js" }, onMainExecuted);
-	else
-		chrome.tabs.create({ url : "https://play.pocketcasts.com/" }, null);
+	} else {
+		if(!clickFromMediaKey) chrome.tabs.create({ url : "https://play.pocketcasts.com/" }, null);
+	}	
 }
 
 function onMainExecuted(result) {
