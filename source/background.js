@@ -8,17 +8,32 @@ chrome.commands.onCommand.addListener(mediaButtonPress);
 function mediaButtonPress(command) {
     switch (command) {
         case "play-pause":
-            action = "play";
-            playFromMediaKey = true;
-            gotoGetWindows();
+            chrome.storage.sync.get({ play_enabled: true },
+                function(items) {
+                    if (items.play_enabled) {
+                        action = "play";
+                        playFromMediaKey = true;
+                        gotoGetWindows();
+                    }
+                });
             break;
         case "jump-forward":
-            action = "forward"
-            gotoGetWindows();
+            chrome.storage.sync.get({ skip_enabled: true },
+                function(items) {
+                    if (items.skip_enabled) {
+                        action = "forward";
+                        gotoGetWindows();
+                    }
+                });
             break;
         case "jump-back":
-            action = "back"
-            gotoGetWindows();
+            chrome.storage.sync.get({ skip_enabled: true },
+                function(items) {
+                    if (items.skip_enabled) {
+                        action = "back";
+                        gotoGetWindows();
+                    }
+                });
             break;
     }
 }
