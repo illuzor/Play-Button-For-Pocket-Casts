@@ -32,8 +32,7 @@
       ],
       "js": [
         "action-play.js",
-        "action-forward.js",
-        "action-back.js"
+        "action-skip.js"
       ]
     }
   ],

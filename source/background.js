@@ -67,16 +67,23 @@ function getWindows(windows) {
                 chrome.tabs.executeScript(pcTab.id, { file: "action-play.js" }, playPause);
                 break;
             case "forward":
-                chrome.tabs.executeScript(pcTab.id, { file: "action-forward.js" });
+				skip(".skip_forward_button")
                 break;
             case "back":
-                chrome.tabs.executeScript(pcTab.id, { file: "action-back.js" });
+                skip(".skip_back_button")
                 break;
         }
     } else {
         if (action == "play" && !playFromMediaKey)
             chrome.tabs.create({ url: "https://play.pocketcasts.com/" });
     }
+}
+
+function skip(type) {
+    chrome.tabs.executeScript(pcTab.id, { code: 'var type = "' + type + '";' },
+        function() {
+            chrome.tabs.executeScript(pcTab.id, { file: "action-skip.js" });
+        });
 }
 
 function playPause(result) {
