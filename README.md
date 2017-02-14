@@ -1,8 +1,21 @@
 Play-Button-For-Pocket-Casts
 ============================
 
-Chrome Extension
+## Description
 
-Simple play/pause button for Pocket Casts. This button allows to pause or resume current podcasts independently of current tab or current window. If Pocket Casts site is not open, it will be open by click on the extension icon.
+This chrome extension allows to control playing of current podcast on pocketcast site by button and by keyboard media keys.
 
-![pc_screenshot.png](http://download.illuzor.com/images/github/pc_screenshot.png)
+## Features
+- Hardware media keys support (may be disabled in options);
+- Extremely lightweight. Less than 10 kilobytes;
+- Without unnecessary permissions;
+- Easy to use.
+
+## Keyboard media keys support:
+ - Play/Pause (►/❚❚);
+ - Back ⏮ - skip back 10 seconds;
+ - Forward ⏭ - skip forward 30 seconds.
+ 
+## Screenshot
+
+![pc_screenshot1.png](http://download.illuzor.com/images/github/pc_screenshot1.png)
