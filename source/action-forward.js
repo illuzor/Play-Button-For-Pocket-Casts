@@ -1,7 +1,4 @@
-var button = document.querySelector(".skip_forward_button");
+var player = document.getElementById("audio_player")
 
-if (button.onclick) {
-    button.onclick();
-} else if (button.click) {
-    button.click();
-}
+if (player.offsetWidth && player.offsetHeight) 
+	document.querySelector(".skip_forward_button").click();

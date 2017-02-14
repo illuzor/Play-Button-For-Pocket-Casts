@@ -1,19 +1,14 @@
-﻿var result = "jqueryIsNotExists";
+﻿var result = "nothingToPlay";
+var player = document.getElementById("audio_player")
 
-if (typeof jQuery != "undefined") {
-    if ($("#audio_player div.play_pause_button:first").is(":visible")) { // if bottom player is visible
-        $("#audio_player div.play_pause_button:first").trigger("click"); // simulate click to play/pause button
-        if ($("#audio_player div.play_pause_button:first").hasClass("play_button")) { // if current state is "playing"
-            result = "pause";
-        } else { // if current state is "pause"
-            result = "play";
-        }
-    } else if ($("#episodes_page .episode_row:not(.episode_deleted):last").length) {
-        $("#episodes_page .episode_row:not(.episode_deleted):last .episode_button").trigger("click");
+if (player.offsetWidth && player.offsetHeight) {
+    if (document.querySelector(".play_pause_button.play_button") != null) {
+        document.querySelector(".play_pause_button.play_button").click()
         result = "play";
-    } else { // nothing to play
-        result = "nothingToPlay";
-    }
+    } else if (document.querySelector(".play_pause_button.pause_button") != null) {
+        document.querySelector(".play_pause_button.pause_button").click()
+        result = "pause";
+    } 
 }
 
 result;

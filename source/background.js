@@ -64,30 +64,19 @@ function getWindows(windows) {
     if (pcTab != null) {
         switch (action) {
             case "play":
-                chrome.tabs.executeScript(pcTab.id, { file: "action-play.js" }, onMainExecuted);
+                chrome.tabs.executeScript(pcTab.id, { file: "action-play.js" }, playPause);
                 break;
             case "forward":
-                chrome.tabs.executeScript(pcTab.id, { file: "action-forward.js" }, null);
+                chrome.tabs.executeScript(pcTab.id, { file: "action-forward.js" });
                 break;
             case "back":
-                chrome.tabs.executeScript(pcTab.id, { file: "action-back.js" }, null);
+                chrome.tabs.executeScript(pcTab.id, { file: "action-back.js" });
                 break;
         }
     } else {
         if (action == "play" && !playFromMediaKey)
-            chrome.tabs.create({ url: "https://play.pocketcasts.com/" }, null);
+            chrome.tabs.create({ url: "https://play.pocketcasts.com/" });
     }
-}
-
-function onMainExecuted(result) {
-    if (result == "jqueryIsNotExists")
-        chrome.tabs.executeScript(pcTab.id, { file: "jquery.js" }, onJqueryExecuted);
-    else
-        playPause(result);
-}
-
-function onJqueryExecuted(result) {
-    chrome.tabs.executeScript(pcTab.id, { file: "action-play.js" }, onMainExecuted);
 }
 
 function playPause(result) {
@@ -101,7 +90,7 @@ function playPause(result) {
             iconPath = "images/play.png";
             iconText = "Play";
         }
-        chrome.browserAction.setIcon({ path: iconPath }, null);
+        chrome.browserAction.setIcon({ path: iconPath });
         chrome.browserAction.setTitle({ title: iconText });
     } else { // nothing to play
         alert("Nothing to play");
