@@ -70,7 +70,7 @@ function getWindows(windows) {
 				skip(".skip_forward_button")
                 break;
             case "back":
-                skip(".skip_back_button")
+				skip(".skip_back_button")
                 break;
         }
     } else {
