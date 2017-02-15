@@ -67,10 +67,10 @@ function getWindows(windows) {
                 chrome.tabs.executeScript(pcTab.id, { file: "action-play.js" }, playPause);
                 break;
             case "forward":
-				skip(".skip_forward_button")
+				skip(".skip_forward_button");
                 break;
             case "back":
-				skip(".skip_back_button")
+				skip(".skip_back_button");
                 break;
         }
     } else {
@@ -87,19 +87,23 @@ function skip(type) {
 }
 
 function playPause(result) {
-    if (result != "nothingToPlay") {
-        var iconPath;
-        var iconText;
-        if (result == "play") { //  play
-            iconPath = "images/pause.png";
-            iconText = "Pause";
-        } else { // pause
-            iconPath = "images/play.png";
-            iconText = "Play";
-        }
-        chrome.browserAction.setIcon({ path: iconPath });
-        chrome.browserAction.setTitle({ title: iconText });
-    } else { // nothing to play
-        alert("Nothing to play");
-    }
+	var iconPath;
+	var iconText;
+	if (result == "play") { //  play
+		iconPath = "images/pause.png";
+		iconText = "Pause";
+	} else { // pause
+		iconPath = "images/play.png";
+		iconText = "Play";
+	}
+	chrome.browserAction.setIcon({ path: iconPath });
+	chrome.browserAction.setTitle({ title: iconText });
+	
+	if(result == "nothingToPlay"){
+		chrome.storage.sync.get({ ntp_enabled: true },
+			function(items) {
+				if (items.ntp_enabled) 
+					alert("Noting to play");
+			});
+	}
 }
