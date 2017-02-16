@@ -1,4 +1,4 @@
-﻿var result = "nothingToPlay";
+﻿var result = "ntp";
 var player = document.getElementById("audio_player");
 
 if (player.offsetWidth && player.offsetHeight) {
@@ -9,6 +9,15 @@ if (player.offsetWidth && player.offsetHeight) {
         document.querySelector(".play_pause_button.pause_button").click();
         result = "pause";
     } 
+} else {
+	var buttons = document.querySelectorAll('[ng-click="playPause(episode, episode.podcast)"]');
+	if(buttons.length){
+		var num = 0
+		if(random == "yes")
+			num = Math.floor(Math.random() * buttons.length);
+		buttons[num].click();
+		result = "play";
+	}
 }
 
 result;

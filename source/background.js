@@ -64,7 +64,14 @@ function getWindows(windows) {
     if (pcTab != null) {
         switch (action) {
             case "play":
-                chrome.tabs.executeScript(pcTab.id, { file: "action-play.js" }, playPause);
+				chrome.storage.sync.get({ random: "no" },
+				function(items) {
+					chrome.tabs.executeScript(pcTab.id, { code: 'var random = "' + items.random + '";' },
+						function() {
+							chrome.tabs.executeScript(pcTab.id, { file: "action-play.js" }, playPause);
+						});
+				});
+				
                 break;
             case "forward":
 				skip(".skip_forward_button");
@@ -99,7 +106,7 @@ function playPause(result) {
 	chrome.browserAction.setIcon({ path: iconPath });
 	chrome.browserAction.setTitle({ title: iconText });
 	
-	if(result == "nothingToPlay"){
+	if(result == "ntp"){
 		chrome.storage.sync.get({ ntp_enabled: true },
 			function(items) {
 				if (items.ntp_enabled) 

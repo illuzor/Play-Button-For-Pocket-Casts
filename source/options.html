@@ -1,31 +1,37 @@
 <!DOCTYPE html>
 <html>
-	<body>
 
-	<label>
-	  <input type="checkbox" id="play_enabled">
-	  Enable Play/Pause hardware key
-	</label>
+<body>
+    <label>
+        <input type="checkbox" id="play_enabled"> Enable Play/Pause hardware key
+    </label>
 
-	</br>
+    </br>
 
-	<label>
-	  <input type="checkbox" id="skip_enabled">
-	  Enable Prev/Next hardware keys
-	</label>
-	
-	</br>
+    <label>
+        <input type="checkbox" id="skip_enabled"> Enable Prev/Next hardware keys
+    </label>
 
-	<label>
-	  <input type="checkbox" id="ntp_enabled">
-	  Show "Nothing to play" alert
-	</label>
+    </br>
 
-	</br>
-	</br>
+    <label>
+        <input type="checkbox" id="ntp_enabled"> Show "Nothing to play" alert
+    </label>
 
-	<button id="save">Save</button> 
+    </br>
+    </br>
 
-	<script src="options.js"></script>
-	</body>
+    If player is inactive:
+    <select id="random">
+        <option value="no">play first podcast on page</option>
+        <option value="yes">play random podcast from page</option>
+    </select>
+
+    </br>
+    </br>
+
+    <button id="save">Save</button>
+    <script src="options.js"></script>
+</body>
+
 </html>
