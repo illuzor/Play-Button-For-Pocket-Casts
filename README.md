@@ -19,3 +19,5 @@ This chrome extension allows to control playing of current podcast on pocketcast
 ## Screenshot
 
 ![pc_screenshot1.png](http://download.illuzor.com/images/github/pc_screenshot1.png)
+
+See also [Play-Button-For-Google-Play-Music](https://github.com/illuzor/Play-Button-For-Google-Play-Music)
