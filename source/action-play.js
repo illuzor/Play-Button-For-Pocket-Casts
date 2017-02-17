@@ -10,14 +10,17 @@ if (player.offsetWidth && player.offsetHeight) {
         result = "pause";
     } 
 } else {
-	var buttons = document.querySelectorAll('[ng-click="playPause(episode, episode.podcast)"]');
-	if(buttons.length){
-		var num = 0
-		if(random == "yes")
-			num = Math.floor(Math.random() * buttons.length);
-		buttons[num].click();
-		result = "play";
-	}
+    if (play != "none") {
+        var divs = document.querySelectorAll('.played_status_1, .played_status_2');
+
+        if (divs.length) {
+            var num = 0
+            if (play == "random")
+                num = Math.floor(Math.random() * divs.length);
+            divs[num].getElementsByClassName("episode_button")[0].click();
+            result = "play";
+        }
+    }
 }
 
 result;

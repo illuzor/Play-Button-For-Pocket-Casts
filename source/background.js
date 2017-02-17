@@ -64,9 +64,9 @@ function getWindows(windows) {
     if (pcTab != null) {
         switch (action) {
             case "play":
-				chrome.storage.sync.get({ random: "no" },
+				chrome.storage.sync.get({ play: "first" },
 				function(items) {
-					chrome.tabs.executeScript(pcTab.id, { code: 'var random = "' + items.random + '";' },
+					chrome.tabs.executeScript(pcTab.id, { code: 'var play = "' + items.play + '";' },
 						function() {
 							chrome.tabs.executeScript(pcTab.id, { file: "action-play.js" }, playPause);
 						});
