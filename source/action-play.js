@@ -15,7 +15,7 @@ if (player.offsetWidth && player.offsetHeight) {
 
         if (divs.length) {
             var num = 0;
-            if (play == "random");
+            if (play == "random")
                 num = Math.floor(Math.random() * divs.length);
             divs[num].getElementsByClassName("episode_button")[0].click();
             result = "play";
