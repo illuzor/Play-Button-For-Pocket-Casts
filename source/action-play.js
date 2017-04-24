@@ -11,7 +11,7 @@ if (player.offsetWidth && player.offsetHeight) {
     } 
 } else {
     if (play != "none") {
-        var divs = document.querySelectorAll('.played_status_1, .played_status_2');
+        var divs = document.querySelectorAll('.played_status_1, .played_status_2, .played_status_');
 
         if (divs.length) {
             var num = 0;
