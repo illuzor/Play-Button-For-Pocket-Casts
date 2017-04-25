@@ -7,7 +7,7 @@ This chrome extension allows to control playing of current podcast on pocketcast
 
 ## Features
 - Hardware media keys support (may be disabled in options);
-- Extremely lightweight. Less than 10 kilobytes;
+- Extremely lightweight. About 10 kilobytes;
 - Without unnecessary permissions;
 - Easy to use.
 
