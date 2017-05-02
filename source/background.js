@@ -110,7 +110,7 @@ function playPause(result) {
 		chrome.storage.sync.get({ ntp_enabled: true },
 			function(items) {
 				if (items.ntp_enabled) 
-					alert("Noting to play");
+					alert("Nothing to play");
 			});
 	}
 }
