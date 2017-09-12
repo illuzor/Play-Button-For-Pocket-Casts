@@ -5,6 +5,7 @@
   "description": "Simple play/pause button for Pocket Casts. This button allows to pause or resume current podcasts independently of current tab.",
   "version": "1.11",
   "author": "Artem Zanin",
+  "default_locale": "en",
   "icons": {
     "16": "images/play.png",
     "48": "images/icon48.png",
