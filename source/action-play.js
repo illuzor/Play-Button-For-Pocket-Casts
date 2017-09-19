@@ -1,19 +1,26 @@
 ﻿var result = "ntp";
-var player = document.getElementById("audio_player");
 
-if (player.offsetWidth && player.offsetHeight) {
-    if (document.querySelector(".play_pause_button.play_button") != null) {
-        document.querySelector(".play_pause_button.play_button").click();
-        result = "play";
-    } else if (document.querySelector(".play_pause_button.pause_button") != null) {
-        document.querySelector(".play_pause_button.pause_button").click();
-        result = "pause";
-    } 
+var playButtons = document.getElementsByClassName("animated-play-button");
+
+if(playButtons.length != 0){
+	if(playButtons[0].outerHTML.includes("matrix(6.")){
+		result = "play";
+	} else {
+		result = "pause";
+	}
+	playButtons[0].click();
 } else {
-    if (play != "none") {
-        var divs = document.querySelectorAll('.played_status_1, .played_status_2, .played_status_');
+	if (play != "none") {
+		
+		var allDivs = document.querySelectorAll('.ReactVirtualized__Table__row.row.clickable');
+		var divs = new Array();
 
-        if (divs.length) {
+		for (i = 0; i < allDivs.length; i++) {
+			if(!allDivs[i].classList.contains("played"))
+				divs[divs.length] = allDivs[i]
+		}
+
+		if (divs.length) {
             var num;
 			
 			switch (play) {
@@ -27,11 +34,14 @@ if (player.offsetWidth && player.offsetHeight) {
 					num = Math.floor(Math.random() * divs.length);
 					break;
 			}
-			
-            divs[num].getElementsByClassName("episode_button")[0].click();
+
+			divs[num].click();
+			document.getElementsByClassName("animated-play-button")[0].click();
+			document.getElementsByClassName("close-button")[0].click();
+
             result = "play";
         }
-    }
+	}
 }
 
 result;

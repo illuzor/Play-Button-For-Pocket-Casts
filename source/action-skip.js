@@ -1,4 +1,2 @@
-var player = document.getElementById("audio_player");
-
-if (player.offsetWidth && player.offsetHeight) 
-	document.querySelector(type).click();
+if(document.getElementsByClassName("animated-play-button").lenght != 0)
+	document.getElementsByClassName(type)[0].click();

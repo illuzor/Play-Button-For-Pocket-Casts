@@ -74,15 +74,15 @@ function getWindows(windows) {
 				
                 break;
             case "forward":
-				skip(".skip_forward_button");
+				skip("skip-forward-button");
                 break;
             case "back":
-				skip(".skip_back_button");
+				skip("skip-back-button");
                 break;
         }
     } else {
         if (action == "play" && !playFromMediaKey)
-            chrome.tabs.create({ url: "https://play.pocketcasts.com/" });
+            chrome.tabs.create({ url: "https://playbeta.pocketcasts.com/" });
     }
 }
 
