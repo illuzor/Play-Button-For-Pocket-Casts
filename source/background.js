@@ -81,8 +81,11 @@ function getWindows(windows) {
                 break;
         }
     } else {
-        if (action == "play" && !playFromMediaKey)
+        if (action == "play" && !playFromMediaKey) {
+			chrome.browserAction.setIcon({ path: "images/play.png" });
+			chrome.browserAction.setTitle({ title: "Play" });
             chrome.tabs.create({ url: "https://playbeta.pocketcasts.com/" });
+		}
     }
 }
 
