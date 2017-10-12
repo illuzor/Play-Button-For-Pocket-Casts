@@ -32,7 +32,8 @@
       ],
       "js": [
         "action-play.js",
-        "action-skip.js"
+        "action-skip.js",
+		"log-listener.js"
       ]
     }
   ],

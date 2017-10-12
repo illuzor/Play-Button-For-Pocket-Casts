@@ -1,9 +1,16 @@
-﻿var pcTab; // Pocket Casts current tab
+﻿var pcTab;
 var playFromMediaKey;
-var action;
+var action = "init";
 
 chrome.browserAction.onClicked.addListener(buttonClick);
 chrome.commands.onCommand.addListener(mediaButtonPress);
+
+chrome.runtime.onMessage.addListener(function(message,sender,resp){
+	chrome.browserAction.setIcon({ path: "images/" + message.state + ".png" });
+	chrome.browserAction.setTitle({ title: message.state });
+});
+
+gotoGetWindows();
 
 function mediaButtonPress(command) {
     switch (command) {
@@ -63,12 +70,16 @@ function getWindows(windows) {
 
     if (pcTab != null) {
         switch (action) {
+			case "init" :
+				chrome.tabs.executeScript(pcTab.id, { file: "log-listener.js" });
+			break;
             case "play":
 				chrome.storage.sync.get({ play: "first" },
 				function(items) {
 					chrome.tabs.executeScript(pcTab.id, { code: 'var play = "' + items.play + '";' },
 						function() {
 							chrome.tabs.executeScript(pcTab.id, { file: "action-play.js" }, playPause);
+							chrome.tabs.executeScript(pcTab.id, { file: "log-listener.js" });
 						});
 				});
 				
@@ -96,20 +107,8 @@ function skip(type) {
         });
 }
 
-function playPause(result) {
-	var iconPath;
-	var iconText;
-	if (result == "play") { //  play
-		iconPath = "images/pause.png";
-		iconText = "Pause";
-	} else { // pause
-		iconPath = "images/play.png";
-		iconText = "Play";
-	}
-	chrome.browserAction.setIcon({ path: iconPath });
-	chrome.browserAction.setTitle({ title: iconText });
-	
-	if(result == "ntp"){
+function playPause(ntp) {
+	if(ntp == 1){
 		chrome.storage.sync.get({ ntp_enabled: true },
 			function(items) {
 				if (items.ntp_enabled) 

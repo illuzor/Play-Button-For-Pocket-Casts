@@ -1,14 +1,10 @@
-﻿var result = "ntp";
+﻿var ntp = 1;
 
 var playButtons = document.getElementsByClassName("animated-play-button");
 
 if(playButtons.length != 0){
-	if(playButtons[0].outerHTML.includes("matrix(6.")){
-		result = "play";
-	} else {
-		result = "pause";
-	}
 	playButtons[0].click();
+	ntp = 0;
 } else {
 	if (play != "none") {
 		
@@ -39,9 +35,9 @@ if(playButtons.length != 0){
 			document.getElementsByClassName("animated-play-button")[0].click();
 			document.getElementsByClassName("close-button")[0].click();
 
-            result = "play";
+            ntp = 0;
         }
 	}
 }
 
-result;
+ntp;
