@@ -2,8 +2,8 @@ function save_options() {
     chrome.storage.sync.set({
         play_enabled: document.getElementById('play_enabled').checked,
         skip_enabled: document.getElementById('skip_enabled').checked,
-		ntp_enabled: document.getElementById('ntp_enabled').checked,
-		play: document.getElementById('play').value
+        ntp_enabled: document.getElementById('ntp_enabled').checked,
+        play: document.getElementById('play').value
     }, function() {
         window.close();
     });
@@ -13,8 +13,8 @@ function restore_options() {
     chrome.storage.sync.get({
             play_enabled: true,
             skip_enabled: true,
-			ntp_enabled: true,
-			play: "first"
+            ntp_enabled: true,
+            play: "first"
         },
         function(items) {
             document.getElementById('play_enabled').checked = items.play_enabled;

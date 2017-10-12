@@ -5,9 +5,9 @@ var action = "init";
 chrome.browserAction.onClicked.addListener(buttonClick);
 chrome.commands.onCommand.addListener(mediaButtonPress);
 
-chrome.runtime.onMessage.addListener(function(message,sender,resp){
-	chrome.browserAction.setIcon({ path: "images/" + message.state + ".png" });
-	chrome.browserAction.setTitle({ title: message.state });
+chrome.runtime.onMessage.addListener(function(message, sender, resp) {
+    chrome.browserAction.setIcon({ path: "images/" + message.state + ".png" });
+    chrome.browserAction.setTitle({ title: message.state });
 });
 
 gotoGetWindows();
@@ -70,33 +70,33 @@ function getWindows(windows) {
 
     if (pcTab != null) {
         switch (action) {
-			case "init" :
-				chrome.tabs.executeScript(pcTab.id, { file: "log-listener.js" });
-			break;
+            case "init":
+                chrome.tabs.executeScript(pcTab.id, { file: "log-listener.js" });
+                break;
             case "play":
-				chrome.storage.sync.get({ play: "first" },
-				function(items) {
-					chrome.tabs.executeScript(pcTab.id, { code: 'var play = "' + items.play + '";' },
-						function() {
-							chrome.tabs.executeScript(pcTab.id, { file: "action-play.js" }, playPause);
-							chrome.tabs.executeScript(pcTab.id, { file: "log-listener.js" });
-						});
-				});
-				
+                chrome.storage.sync.get({ play: "first" },
+                    function(items) {
+                        chrome.tabs.executeScript(pcTab.id, { code: 'var play = "' + items.play + '";' },
+                            function() {
+                                chrome.tabs.executeScript(pcTab.id, { file: "action-play.js" }, playPause);
+                                chrome.tabs.executeScript(pcTab.id, { file: "log-listener.js" });
+                            });
+                    });
+
                 break;
             case "forward":
-				skip("skip-forward-button");
+                skip("skip-forward-button");
                 break;
             case "back":
-				skip("skip-back-button");
+                skip("skip-back-button");
                 break;
         }
     } else {
         if (action == "play" && !playFromMediaKey) {
-			chrome.browserAction.setIcon({ path: "images/play.png" });
-			chrome.browserAction.setTitle({ title: "Play" });
+            chrome.browserAction.setIcon({ path: "images/play.png" });
+            chrome.browserAction.setTitle({ title: "Play" });
             chrome.tabs.create({ url: "https://playbeta.pocketcasts.com/" });
-		}
+        }
     }
 }
 
@@ -108,11 +108,11 @@ function skip(type) {
 }
 
 function playPause(ntp) {
-	if(ntp == 1){
-		chrome.storage.sync.get({ ntp_enabled: true },
-			function(items) {
-				if (items.ntp_enabled) 
-					alert("Nothing to play");
-			});
-	}
+    if (ntp == 1) {
+        chrome.storage.sync.get({ ntp_enabled: true },
+            function(items) {
+                if (items.ntp_enabled)
+                    alert("Nothing to play");
+            });
+    }
 }
