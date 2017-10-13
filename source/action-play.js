@@ -13,7 +13,7 @@ if (playButtons.length != 0) {
 
         for (i = 0; i < allDivs.length; i++) {
             if (!allDivs[i].classList.contains("played"))
-                divs[divs.length] = allDivs[i]
+                divs[divs.length] = allDivs[i];
         }
 
         if (divs.length) {
@@ -21,10 +21,10 @@ if (playButtons.length != 0) {
 
             switch (play) {
                 case "first":
-                    num = 0
+                    num = 0;
                     break;
                 case "last":
-                    num = divs.length - 1
+                    num = divs.length - 1;
                     break;
                 case "random":
                     num = Math.floor(Math.random() * divs.length);
