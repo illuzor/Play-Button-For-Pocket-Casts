@@ -1,6 +1,7 @@
-﻿var pcTab;
+var pcTab;
 var playFromMediaKey;
 var action = "init";
+const URL = "https://playbeta.pocketcasts.com/"
 
 chrome.browserAction.onClicked.addListener(buttonClick);
 chrome.commands.onCommand.addListener(mediaButtonPress);
@@ -95,7 +96,16 @@ function getWindows(windows) {
         if (action == "play" && !playFromMediaKey) {
             chrome.browserAction.setIcon({ path: "images/play.png" });
             chrome.browserAction.setTitle({ title: "Play" });
-            chrome.tabs.create({ url: "https://playbeta.pocketcasts.com/" });
+
+            chrome.storage.sync.get({ page: "default" },
+                function(items) {
+                    if (items.page != "none") {
+                        var finalUrl = URL;
+                        if (items.page != "default")
+                            finalUrl += "web/" + items.page;
+                        chrome.tabs.create({ url: finalUrl });
+                    }
+                });
         }
     }
 }

@@ -3,7 +3,8 @@ function save_options() {
         play_enabled: document.getElementById('play_enabled').checked,
         skip_enabled: document.getElementById('skip_enabled').checked,
         ntp_enabled: document.getElementById('ntp_enabled').checked,
-        play: document.getElementById('play').value
+        play: document.getElementById('play').value,
+        page: document.getElementById('page').value
     }, function() {
         window.close();
     });
@@ -14,13 +15,15 @@ function restore_options() {
             play_enabled: true,
             skip_enabled: true,
             ntp_enabled: true,
-            play: "first"
+            play: "first",
+            page: "default"
         },
         function(items) {
             document.getElementById('play_enabled').checked = items.play_enabled;
             document.getElementById('skip_enabled').checked = items.skip_enabled;
             document.getElementById('ntp_enabled').checked = items.ntp_enabled;
             document.getElementById('play').value = items.play;
+            document.getElementById('page').value = items.page;
         });
 }
 document.addEventListener('DOMContentLoaded', restore_options);
