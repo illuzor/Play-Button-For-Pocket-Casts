@@ -12,10 +12,10 @@ This chrome extension allows to control playing of current podcast on pocketcast
 - Easy to use.
 
 ## Keyboard media keys support:
- - Play/Pause (►/❚❚);
+ - Play/Pause ⏯;
  - Back ⏮ - skip back;
  - Forward ⏭ - skip forward.
- 
+
 ## Screenshot
 
 ![pc_screenshot2.png](http://download.illuzor.com/images/github/pc_screenshot2.png)

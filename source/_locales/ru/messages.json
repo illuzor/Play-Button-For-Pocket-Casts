@@ -1,0 +1,80 @@
+{
+    "enable_play_pause": {
+        "message": "Использовать физическую кнопку ⏯"
+    },
+    "enable_play_prev_next": {
+        "message": "Использовать физические кнопки ⏮/⏭"
+    },
+    "show_ntp": {
+        "message": "Показывать сообщение «Подкасты не найдены»"
+    },
+    "page_to_open": {
+        "message": "Открывать страницу"
+    },
+    "if_player_inactive": {
+        "message": "Если плеер неактивен"
+    },
+    "save": {
+        "message": "Сохранить"
+    },
+    "page_default": {
+        "message": "По-умолчанию"
+    },
+    "page_podcasts": {
+        "message": "Подкасты"
+    },
+    "page_discover": {
+        "message": "Каталог"
+    },
+    "page_new_releases": {
+        "message": "Новые Релизы"
+    },
+    "page_in_progress": {
+        "message": "На паузе"
+    },
+    "page_starred": {
+        "message": "Избранное"
+    },
+    "page_none": {
+        "message": "Отключено"
+    },
+    "play_first": {
+        "message": "Включать первый подкаст сверху"
+    },
+    "play_last": {
+        "message": "Включать первый подкаст снизу"
+    },
+    "play_random": {
+        "message": "Включать случайный подкаст"
+    },
+    "play_none": {
+        "message": "Ничего не включать"
+    },
+    "ntp": {
+        "message": "Подкасты не найдены =("
+    },
+    "Play": {
+        "message": "Воспроизведение"
+    },
+    "Pause": {
+        "message": "Пауза"
+    },
+    "play_pause": {
+        "message": "Воспроизведение/Пауза"
+    },
+    "jump_back": {
+        "message": "Переход назад"
+    },
+    "jump_forward": {
+        "message": "Переход вперёд"
+    },
+    "ext_name": {
+        "message": "Кнопка Воспроизведение/Пауза для Pocket Casts"
+    },
+    "ext_short_name": {
+        "message": "Кнопка Воспроизведения"
+    },
+    "ext_description": {
+        "message": "Простая кнопка Воспроизведения/Паузы для Pocket Casts. Эта кнопка позволяет удобно вопроизводить и ставить на паузу текущий подкаст независимо от вкладки браузера."
+    }
+}

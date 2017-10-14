@@ -1,9 +1,9 @@
 {
     "enable_play_pause": {
-        "message": "Enable Play/Pause hardware key"
+        "message": "Enable ⏯ hardware key"
     },
     "enable_play_prev_next": {
-        "message": "Enable Prev/Next hardware keys"
+        "message": "Enable ⏮/⏭ hardware keys"
     },
     "show_ntp": {
         "message": "Show «Nothing to play» alert"
