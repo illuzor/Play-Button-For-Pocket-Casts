@@ -1,14 +1,14 @@
 var pcTab;
 var playFromMediaKey;
 var action = "init";
-const URL = "https://playbeta.pocketcasts.com/"
+const URL = "https://playbeta.pocketcasts.com/";
 
 chrome.browserAction.onClicked.addListener(buttonClick);
 chrome.commands.onCommand.addListener(mediaButtonPress);
 
 chrome.runtime.onMessage.addListener(function(message, sender, resp) {
     chrome.browserAction.setIcon({ path: "images/" + message.state + ".png" });
-    chrome.browserAction.setTitle({ title: message.state });
+    chrome.browserAction.setTitle({ title: chrome.i18n.getMessage(message.state) });
 });
 
 gotoGetWindows();
@@ -95,7 +95,7 @@ function getWindows(windows) {
     } else {
         if (action == "play" && !playFromMediaKey) {
             chrome.browserAction.setIcon({ path: "images/play.png" });
-            chrome.browserAction.setTitle({ title: "Play" });
+            chrome.browserAction.setTitle({ title: chrome.i18n.getMessage("Play") });
 
             chrome.storage.sync.get({ page: "default" },
                 function(items) {
@@ -122,7 +122,7 @@ function playPause(ntp) {
         chrome.storage.sync.get({ ntp_enabled: true },
             function(items) {
                 if (items.ntp_enabled)
-                    alert("Nothing to play");
+                    alert(chrome.i18n.getMessage('ntp'));
             });
     }
 }

@@ -2,51 +2,52 @@
 <html>
 
 <body>
-    <label>
-        <input type="checkbox" id="play_enabled"> Enable Play/Pause hardware key
+    <label id="play_enabled_label">
+        <input type="checkbox" id="play_enabled">
     </label>
 
     </br>
 
-    <label>
-        <input type="checkbox" id="skip_enabled"> Enable Prev/Next hardware keys
+    <label id="skip_enabled_label">
+        <input type="checkbox" id="skip_enabled">
     </label>
 
     </br>
 
-    <label>
-        <input type="checkbox" id="ntp_enabled"> Show "Nothing to play" alert
+    <label id="ntp_enabled_label">
+        <input type="checkbox" id="ntp_enabled">
     </label>
 
-  </br>
-  </br>
+    </br>
+    </br>
 
-    Page to open:
-    <select id="page">
-        <option value="default">Default</option>
-        <option value="podcasts">Podcasts</option>
-        <option value="discover">Discover</option>
-        <option value="new-releases">New Releases</option>
-        <option value="in-progress">In Progress</option>
-        <option value="starred">Starred</option>
-        <option value="none">Disabled</option>
-    </select>
+    <label id="page_label">
+      <select id="page">
+          <option value="default"/>
+          <option value="podcasts"/>
+          <option value="discover"/>
+          <option value="new-releases"/>
+          <option value="in-progress"/>
+          <option value="starred"/>
+          <option value="none"/>
+      </select>
+    </label>
 
     </br>
     </br>
 
-    If player is inactive:
-    <select id="play">
-        <option value="first">play first podcast from top</option>
-        <option value="last">play first podcast from bottom</option>
-        <option value="random">play random podcast</option>
-        <option value="none">don`t play</option>
-    </select>
-
+    <label id="play_label">
+      <select id="play">
+          <option value="first"/>
+          <option value="last"/>
+          <option value="random"/>
+          <option value="none"/>
+      </select>
+    <label>
     </br>
     </br>
 
-    <button id="save">Save</button>
+    <button id="save"/>
     <script src="options.js"></script>
 </body>
 

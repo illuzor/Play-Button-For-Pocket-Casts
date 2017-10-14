@@ -1,0 +1,80 @@
+{
+    "enable_play_pause": {
+        "message": "Enable Play/Pause hardware key"
+    },
+    "enable_play_prev_next": {
+        "message": "Enable Prev/Next hardware keys"
+    },
+    "show_ntp": {
+        "message": "Show «Nothing to play» alert"
+    },
+    "page_to_open": {
+        "message": "Page to open"
+    },
+    "if_player_inactive": {
+        "message": "If player is inactive"
+    },
+    "save": {
+        "message": "Save"
+    },
+    "page_default": {
+        "message": "Default"
+    },
+    "page_podcasts": {
+        "message": "Podcasts"
+    },
+    "page_discover": {
+        "message": "Discover"
+    },
+    "page_new_releases": {
+        "message": "New Releases"
+    },
+    "page_in_progress": {
+        "message": "In Progress"
+    },
+    "page_starred": {
+        "message": "Starred"
+    },
+    "page_none": {
+        "message": "Disabled"
+    },
+    "play_first": {
+        "message": "Play first podcast from top"
+    },
+    "play_last": {
+        "message": "Play first podcast from bottom"
+    },
+    "play_random": {
+        "message": "Play random podcast"
+    },
+    "play_none": {
+        "message": "Don`t play anything"
+    },
+    "ntp": {
+        "message": "Nothing to play =("
+    },
+    "Play": {
+        "message": "Play"
+    },
+    "Pause": {
+        "message": "Pause"
+    },
+    "play_pause": {
+        "message": "Play/Pause"
+    },
+    "jump_back": {
+        "message": "Jump back"
+    },
+    "jump_forward": {
+        "message": "Jump forward"
+    },
+    "ext_name": {
+        "message": "Play/Pause Button For Pocket Casts"
+    },
+    "ext_short_name": {
+        "message": "Play Button"
+    },
+    "ext_description": {
+        "message": "Simple play/pause button for Pocket Casts. This button allows to pause or resume current podcasts independently of current tab."
+    }
+}

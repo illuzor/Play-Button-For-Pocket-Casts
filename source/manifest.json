@@ -1,67 +1,66 @@
-﻿{
-  "manifest_version": 2,
-  "name": "Play/Pause Button For Pocket Casts",
-  "short_name": "Play Button",
-  "description": "Simple play/pause button for Pocket Casts. This button allows to pause or resume current podcasts independently of current tab.",
-  "version": "2.0",
-  "author": "Artem Zanin",
-  "icons": {
-    "16": "images/play.png",
-    "48": "images/icon48.png",
-    "128": "images/icon128.png"
-  },
-  "options_ui": {
-    "page": "options.html",
-    "chrome_style": true
-  },
-  "permissions": [
-    "storage",
-    "tabs",
-    "https://playbeta.pocketcasts.com/*/"
-  ],
-  "background": {
-    "persistent": false,
-    "scripts": [
-      "background.js"
-    ]
-  },
-  "content_scripts": [
-    {
-      "matches": [
+{
+    "manifest_version": 2,
+    "name": "__MSG_ext_name__",
+    "short_name": "__MSG_ext_short_name__",
+    "description": "__MSG_ext_description__",
+    "version": "2.0",
+    "author": "Artem Zanin",
+    "default_locale": "en",
+    "icons": {
+        "16": "images/play.png",
+        "48": "images/icon48.png",
+        "128": "images/icon128.png"
+    },
+    "options_ui": {
+        "page": "options.html",
+        "chrome_style": true
+    },
+    "permissions": [
+        "storage",
+        "tabs",
         "https://playbeta.pocketcasts.com/*/"
-      ],
-      "js": [
-        "action-play.js",
-        "action-skip.js",
-		"log-listener.js"
-      ]
-    }
-  ],
-  "browser_action": {
-    "default_title": "Play",
-    "default_icon": "images/play.png"
-  },
-  "commands": {
-    "play-pause": {
-      "suggested_key": {
-        "default": "MediaPlayPause"
-      },
-      "description": "Play/Pause",
-      "global": true
+    ],
+    "background": {
+        "persistent": false,
+        "scripts": [
+            "background.js"
+        ]
     },
-    "jump-back": {
-      "suggested_key": {
-        "default": "MediaPrevTrack"
-      },
-      "description": "Jump back",
-      "global": true
+    "content_scripts": [{
+        "matches": [
+            "https://playbeta.pocketcasts.com/*/"
+        ],
+        "js": [
+            "action-play.js",
+            "action-skip.js",
+            "log-listener.js"
+        ]
+    }],
+    "browser_action": {
+        "default_title": "__MSG_Play__",
+        "default_icon": "images/play.png"
     },
-    "jump-forward": {
-      "suggested_key": {
-        "default": "MediaNextTrack"
-      },
-      "description": "Jump forward",
-      "global": true
+    "commands": {
+        "play-pause": {
+            "suggested_key": {
+                "default": "MediaPlayPause"
+            },
+            "description": "__MSG_play_pause__",
+            "global": true
+        },
+        "jump-back": {
+            "suggested_key": {
+                "default": "MediaPrevTrack"
+            },
+            "description": "__MSG_jump_back__",
+            "global": true
+        },
+        "jump-forward": {
+            "suggested_key": {
+                "default": "MediaNextTrack"
+            },
+            "description": "__MSG_jump_forward__",
+            "global": true
+        }
     }
-  }
 }
