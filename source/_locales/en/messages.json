@@ -17,6 +17,9 @@
     "save": {
         "message": "Save"
     },
+    "shortcuts": {
+        "message": "Shortcuts"
+    },
     "page_default": {
         "message": "Default"
     },

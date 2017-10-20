@@ -4,6 +4,7 @@ document.getElementById('ntp_enabled_label').innerHTML += chrome.i18n.getMessage
 document.getElementById('page_label').innerHTML = chrome.i18n.getMessage('page_to_open') + ": " + document.getElementById('page_label').innerHTML;
 document.getElementById('play_label').innerHTML = chrome.i18n.getMessage('if_player_inactive') + ": " + document.getElementById('play_label').innerHTML;
 document.getElementById('save').innerHTML = chrome.i18n.getMessage('save');
+document.getElementById('shortcuts').innerHTML = chrome.i18n.getMessage('shortcuts');
 document.getElementById('page').options[0].text = chrome.i18n.getMessage('page_default');
 document.getElementById('page').options[1].text = chrome.i18n.getMessage('page_podcasts');
 document.getElementById('page').options[2].text = chrome.i18n.getMessage('page_discover');
@@ -16,7 +17,7 @@ document.getElementById('play').options[1].text = chrome.i18n.getMessage('play_l
 document.getElementById('play').options[2].text = chrome.i18n.getMessage('play_random');
 document.getElementById('play').options[3].text = chrome.i18n.getMessage('play_none');
 
-function save_options() {
+function saveOptions() {
     chrome.storage.sync.set({
         play_enabled: document.getElementById('play_enabled').checked,
         skip_enabled: document.getElementById('skip_enabled').checked,
@@ -28,7 +29,7 @@ function save_options() {
     });
 }
 
-function restore_options() {
+function restoreOptions() {
     chrome.storage.sync.get({
             play_enabled: true,
             skip_enabled: true,
@@ -44,5 +45,11 @@ function restore_options() {
             document.getElementById('page').value = items.page;
         });
 }
-document.addEventListener('DOMContentLoaded', restore_options);
-document.getElementById('save').addEventListener('click', save_options);
+
+function openShortcuts() {
+    chrome.tabs.create({url: "chrome://extensions/configureCommands" });
+}
+
+document.addEventListener('DOMContentLoaded', restoreOptions);
+document.getElementById('save').addEventListener('click', saveOptions);
+document.getElementById('shortcuts').addEventListener('click', openShortcuts);

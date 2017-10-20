@@ -17,6 +17,9 @@
     "save": {
         "message": "Сохранить"
     },
+    "shortcuts": {
+        "message": "Кнопки"
+    },
     "page_default": {
         "message": "По-умолчанию"
     },
