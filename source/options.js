@@ -47,7 +47,11 @@ function restoreOptions() {
 }
 
 function openShortcuts() {
-    chrome.tabs.create({url: "chrome://extensions/configureCommands" });
+    chrome.tabs.query({ active: true, lastFocusedWindow: true
+        },
+        function(tabs) {
+            chrome.tabs.update(tabs[0].id, { url: "chrome://extensions/configureCommands" });
+        });
 }
 
 document.addEventListener('DOMContentLoaded', restoreOptions);
