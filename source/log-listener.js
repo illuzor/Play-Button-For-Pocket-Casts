@@ -1,8 +1,9 @@
 if (!script) {
     window.addEventListener("LogEvent", function(e) {
-        if (e.detail.includes("fired playing") || e.detail.includes("fired waiting")) {
+        var evt = e.detail;
+        if (evt.includes("fired playing") || evt.includes("fired waiting")) {
             chrome.runtime.sendMessage({ state: "Pause" });
-        } else if (e.detail.includes("fired pause")) {
+        } else if (evt.includes("fired pause") || evt.includes("fired ended") || evt.includes("fired abort")) {
             chrome.runtime.sendMessage({ state: "Play" });
         }
     }, false);
