@@ -1,2 +1,3 @@
-if (document.getElementsByClassName("animated-play-button").length != 0)
-    document.getElementsByClassName(type)[0].click();
+var buttons = document.getElementsByClassName(type);
+if (buttons != null && buttons.length)
+    buttons[0].click();
