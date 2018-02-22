@@ -58,16 +58,16 @@ function gotoGetWindows() {
 }
 
 function getWindows(windows) {
-  var pcTabs = [];
-  for (var i = 0; i < windows.length; i++) {
-      for (var j = 0; j < windows[i].tabs.length; j++) {
-          if (windows[i].tabs[j].title == "Pocket Casts")
-              pcTabs.push(windows[i].tabs[j]);
-      }
-  }
+    var pcTabs = [];
+    for (var i = 0; i < windows.length; i++) {
+        for (var j = 0; j < windows[i].tabs.length; j++) {
+            if (windows[i].tabs[j].title == "Pocket Casts")
+                pcTabs.push(windows[i].tabs[j]);
+        }
+    }
 
-  if (pcTabs.length)
-      pcTab = pcTabs[0];
+    if (pcTabs.length)
+        pcTab = pcTabs[0];
 
     if (pcTab != null) {
         switch (action) {
@@ -105,7 +105,7 @@ function getWindows(windows) {
                             finalUrl += "web/" + items.page;
                         chrome.tabs.create({ url: finalUrl });
                         chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-                          chrome.tabs.executeScript(tabs[0].id, { file: "log-listener.js" });
+                            chrome.tabs.executeScript(tabs[0].id, { file: "log-listener.js" });
                         });
                     }
                 });
