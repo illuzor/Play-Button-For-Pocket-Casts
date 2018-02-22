@@ -1,3 +1,3 @@
 var buttons = document.getElementsByClassName(type);
-if (buttons != null && buttons.length)
+if (buttons.length)
     buttons[0].click();
