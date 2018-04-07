@@ -1,0 +1,63 @@
+{
+    "manifest_version": 2,
+    "name": "__MSG_ext_name__",
+    "short_name": "__MSG_ext_short_name__",
+    "description": "__MSG_ext_description__",
+    "version": "2.0.4",
+    "author": "Artem Zanin",
+    "default_locale": "en",
+    "applications": {
+        "gecko": {
+            "id": "illuzor@gmail.com",
+            "strict_min_version": "57.0"
+        }
+    },
+    "icons": {
+        "16": "images/play.png",
+        "48": "images/icon48.png",
+        "128": "images/icon128.png"
+    },
+    "options_ui": {
+        "page": "options.html"
+    },
+    "permissions": [
+        "storage",
+        "tabs",
+        "https://playbeta.pocketcasts.com/*/"
+    ],
+    "background": {
+        "scripts": ["background.js"]
+    },
+    "content_scripts": [{
+        "matches": ["https://playbeta.pocketcasts.com/*/"],
+        "js": [
+            "action-play.js",
+            "action-skip.js",
+            "log-listener.js"
+        ]
+    }],
+    "browser_action": {
+        "default_title": "__MSG_Play__",
+        "default_icon": "images/play.png"
+    },
+    "commands": {
+        "play-pause": {
+            "suggested_key": {
+                "default": "Alt+Shift+U"
+            },
+            "description": "__MSG_play_pause__"
+        },
+        "jump-back": {
+            "suggested_key": {
+                "default": "MediaPrevTrack"
+            },
+            "description": "__MSG_jump_back__"
+        },
+        "jump-forward": {
+            "suggested_key": {
+                "default": "MediaNextTrack"
+            },
+            "description": "__MSG_jump_forward__"
+        }
+    }
+}
