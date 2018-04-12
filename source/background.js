@@ -94,7 +94,7 @@ function getWindows(windows) {
         }
     } else {
         if (action == "play" && !playFromMediaKey) {
-            chrome.browserAction.setIcon({ path: "images/play.png" });
+            chrome.browserAction.setIcon({ path: "images/Play.png" });
             chrome.browserAction.setTitle({ title: chrome.i18n.getMessage("Play") });
 
             chrome.storage.sync.get({ page: "default" },
