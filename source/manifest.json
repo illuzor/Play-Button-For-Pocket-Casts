@@ -38,7 +38,7 @@
     }],
     "browser_action": {
         "default_title": "__MSG_Play__",
-        "default_icon": "images/play.png"
+        "default_icon": "images/Play.png"
     },
     "commands": {
         "play-pause": {
