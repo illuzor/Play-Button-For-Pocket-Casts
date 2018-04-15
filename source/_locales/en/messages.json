@@ -11,6 +11,9 @@
     "page_to_open": {
         "message": "Page to open"
     },
+    "pin_tab": {
+        "message": "Pin tab"
+    },
     "if_player_inactive": {
         "message": "If player is inactive"
     },

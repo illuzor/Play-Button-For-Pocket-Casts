@@ -2,6 +2,7 @@ document.getElementById('play_enabled_label').innerHTML += chrome.i18n.getMessag
 document.getElementById('skip_enabled_label').innerHTML += chrome.i18n.getMessage('enable_play_prev_next');
 document.getElementById('ntp_enabled_label').innerHTML += chrome.i18n.getMessage('show_ntp');
 document.getElementById('page_label').innerHTML = chrome.i18n.getMessage('page_to_open') + ": " + document.getElementById('page_label').innerHTML;
+document.getElementById('pin_tab_label').innerHTML += chrome.i18n.getMessage('pin_tab');
 document.getElementById('play_label').innerHTML = chrome.i18n.getMessage('if_player_inactive') + ": " + document.getElementById('play_label').innerHTML;
 document.getElementById('save').innerHTML = chrome.i18n.getMessage('save');
 document.getElementById('shortcuts').innerHTML = chrome.i18n.getMessage('shortcuts');
@@ -22,6 +23,7 @@ function saveOptions() {
         play_enabled: document.getElementById('play_enabled').checked,
         skip_enabled: document.getElementById('skip_enabled').checked,
         ntp_enabled: document.getElementById('ntp_enabled').checked,
+        pin_tab: document.getElementById('pin_tab').checked,
         play: document.getElementById('play').value,
         page: document.getElementById('page').value
     }, function() {
@@ -34,6 +36,7 @@ function restoreOptions() {
             play_enabled: true,
             skip_enabled: true,
             ntp_enabled: true,
+            pin_tab: false,
             play: "first",
             page: "default"
         },
@@ -41,6 +44,7 @@ function restoreOptions() {
             document.getElementById('play_enabled').checked = items.play_enabled;
             document.getElementById('skip_enabled').checked = items.skip_enabled;
             document.getElementById('ntp_enabled').checked = items.ntp_enabled;
+            document.getElementById('pin_tab').checked = items.pin_tab;
             document.getElementById('play').value = items.play;
             document.getElementById('page').value = items.page;
         });

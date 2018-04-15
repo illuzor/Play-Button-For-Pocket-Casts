@@ -103,10 +103,15 @@ function getWindows(windows) {
                         var finalUrl = URL;
                         if (items.page != "default")
                             finalUrl += "web/" + items.page;
-                        chrome.tabs.create({ url: finalUrl });
-                        chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-                            chrome.tabs.executeScript(tabs[0].id, { file: "log-listener.js" });
-                        });
+
+                        chrome.storage.sync.get({ pin_tab: false },
+                            function(items) {
+                                chrome.tabs.create({ url: finalUrl, pinned: items.pin_tab });
+                                chrome.tabs.query({ active: true, currentWindow: true
+                                }, function(tabs) {
+                                    chrome.tabs.executeScript(tabs[0].id, { file: "log-listener.js" });
+                                });
+                            });
                     }
                 });
         }

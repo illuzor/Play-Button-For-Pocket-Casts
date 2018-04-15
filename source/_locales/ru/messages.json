@@ -11,6 +11,9 @@
     "page_to_open": {
         "message": "Открывать страницу"
     },
+    "pin_tab": {
+        "message": "Закрепить вкладку"
+    },
     "if_player_inactive": {
         "message": "Если плеер неактивен"
     },
