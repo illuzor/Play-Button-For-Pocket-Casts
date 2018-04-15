@@ -1,6 +1,10 @@
 Play-Button-For-Pocket-Casts 2
 ============================
 
+## Install
+- [Chrome extension](https://chrome.google.com/webstore/detail/playpause-button-for-pock/ogdnlmiknnmedpcnjnkjncdjjgfdkiik)
+- [Firefox extension](https://addons.mozilla.org/addon/play-button-for-pocketcasts/)
+
 ## Description
 
 This chrome extension allows to control playing of current podcast on pocketcast site by button and by keyboard media keys.
