@@ -2,39 +2,68 @@
 
   <property name="source" value="source/"/>
   <property name="source_ff" value="source_ff/"/>
-  <property name="temp_folder" value="temp_ff"/>
+  <property name="temp_ff_folder" value="temp_ff"/>
+  <property name="source_opera" value="source_opera/"/>
+  <property name="temp_opera_folder" value="temp_opera"/>
   <property name="release_folder" value="release"/>
 
-  <target name="pack.all" description="Run all targets" depends="pack.chrome, pack.ff"/>
+  <target name="pack.all" description="Packing for chrome, firefox and opera" depends="clear, pack.chrome, pack.ff, pack.opera, delete.temp"/>
 
   <target name="pack.chrome" description="Making chrome.zip">
     <zip destfile="${release_folder}/chrome.zip" basedir="${source}"/>
   </target>
 
-  <target name="pack.ff" description="Making firefox.zip" depends="make.temp.ff, zip.ff"/>
+  <target name="test" description="Making test folders for firefox and opera" depends="make.temp.ff, make.temp.opera"/>
 
+  <target name="pack.ff" description="Making firefox.zip" depends="make.temp.ff, zip.ff"/>
   <target name="make.temp.ff" description="Making temp firefox folder">
-    <delete dir="${temp_folder}"/>
-    <mkdir dir="${temp_folder}"/>
-    <copy todir="${temp_folder}">
+    <mkdir dir="${temp_ff_folder}"/>
+    <copy todir="${temp_ff_folder}">
       <fileset dir="${source}"/>
     </copy>
-    <delete file="${temp_folder}/manifest.json"/>
-    <delete file="${temp_folder}/options.html"/>
-    <delete file="${temp_folder}/options.js"/>
-    <copy file="${source_ff}/manifest.json" todir="${temp_folder}"/>
-    <copy file="${source_ff}/options.html" todir="${temp_folder}"/>
-    <copy file="${source_ff}/options.js" todir="${temp_folder}"/>
+    <delete file="${temp_ff_folder}/manifest.json"/>
+    <delete file="${temp_ff_folder}/options.html"/>
+    <delete file="${temp_ff_folder}/options.js"/>
+    <copy file="${source_ff}/manifest.json" todir="${temp_ff_folder}"/>
+    <copy file="${source_ff}/options.html" todir="${temp_ff_folder}"/>
+    <copy file="${source_ff}/options.js" todir="${temp_ff_folder}"/>
   </target>
-
   <target name="zip.ff" description="Zipping firefox.zip">
-    <zip destfile="${release_folder}/firefox.zip" basedir="${temp_folder}"/>
-    <delete dir="${temp_folder}"/>
+    <zip destfile="${release_folder}/firefox.zip" basedir="${temp_ff_folder}"/>
+    <delete dir="${temp_ff_folder}"/>
   </target>
 
-  <target name="clear" description="Removing temp folders">
+
+  <target name="pack.opera" description="Making opera.zip" depends="make.temp.opera, zip.opera"/>
+
+  <target name="make.temp.opera" description="Making temp opera folder">
+    <mkdir dir="${temp_opera_folder}"/>
+    <copy todir="${temp_opera_folder}">
+      <fileset dir="${source}"/>
+    </copy>
+    <delete file="${temp_opera_folder}/manifest.json"/>
+    <delete file="${temp_opera_folder}/options.html"/>
+    <delete file="${temp_opera_folder}/options.js"/>
+    <copy file="${source_opera}/manifest.json" todir="${temp_opera_folder}"/>
+    <copy file="${source_ff}/options.html" todir="${temp_opera_folder}"/>
+    <copy file="${source_ff}/options.js" todir="${temp_opera_folder}"/>
+  </target>
+
+  <target name="zip.opera" description="Zipping opera.zip">
+    <zip destfile="${release_folder}/opera.zip" basedir="${temp_opera_folder}"/>
+    <delete dir="${temp_opera_folder}"/>
+  </target>
+
+
+  <target name="clear" description="Removing temp folders and release folder">
     <delete dir="${temp_folder}"/>
-    <delete dir="${release_folder}"/>
+    <delete file="${release_folder}/chrome.zip"/>
+    <delete file="${release_folder}/firefox.zip"/>
+    <delete file="${release_folder}/opera.zip"/>
+  </target>
+
+  <target name="delete.temp" description="Removing temp folders">
+    <delete dir="${temp_folder}"/>
   </target>
 
 </project>

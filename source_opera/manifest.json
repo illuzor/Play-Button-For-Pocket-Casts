@@ -12,8 +12,7 @@
         "128": "images/icon128.png"
     },
     "options_ui": {
-        "page": "options.html",
-        "chrome_style": true
+        "page": "options.html"
     },
     "permissions": [
         "storage",
@@ -21,15 +20,10 @@
         "https://playbeta.pocketcasts.com/*/"
     ],
     "background": {
-        "persistent": false,
-        "scripts": [
-            "background.js"
-        ]
+        "scripts": ["background.js"]
     },
     "content_scripts": [{
-        "matches": [
-            "https://playbeta.pocketcasts.com/*/"
-        ],
+        "matches": ["https://playbeta.pocketcasts.com/*/"],
         "js": [
             "action-play.js",
             "action-skip.js",
@@ -45,22 +39,19 @@
             "suggested_key": {
                 "default": "MediaPlayPause"
             },
-            "description": "__MSG_play_pause__",
-            "global": true
+            "description": "__MSG_play_pause__"
         },
         "jump-back": {
             "suggested_key": {
                 "default": "MediaPrevTrack"
             },
-            "description": "__MSG_jump_back__",
-            "global": true
+            "description": "__MSG_jump_back__"
         },
         "jump-forward": {
             "suggested_key": {
                 "default": "MediaNextTrack"
             },
-            "description": "__MSG_jump_forward__",
-            "global": true
+            "description": "__MSG_jump_forward__"
         }
     }
 }
