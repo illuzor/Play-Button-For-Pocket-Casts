@@ -7,7 +7,7 @@ Play-Button-For-Pocket-Casts 2
 
 ## Description
 
-This extension allows to control playing of current podcast on pocketcast site by button and by keyboard media keys.
+This chrome extension allows to control playing of current podcast on pocketcast site by button and by keyboard media keys.
 
 ## Features
 - Hardware media keys support (may be disabled in options);
