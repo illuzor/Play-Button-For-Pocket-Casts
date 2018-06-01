@@ -2,8 +2,9 @@ Play-Button-For-Pocket-Casts 2
 ============================
 
 ## Install
-- [Chrome extension](https://chrome.google.com/webstore/detail/playpause-button-for-pock/ogdnlmiknnmedpcnjnkjncdjjgfdkiik)
-- [Firefox extension](https://addons.mozilla.org/addon/play-button-for-pocketcasts/)
+[![Chrome extension](http://download.illuzor.com/images/github/Badges/chrome_badge.png)](https://chrome.google.com/webstore/detail/playpause-button-for-pock/ogdnlmiknnmedpcnjnkjncdjjgfdkiik)
+
+[![Firefox extension](http://download.illuzor.com/images/github/Badges/ff_badge.png)](https://addons.mozilla.org/addon/play-button-for-pocketcasts/)
 
 ## Description
 
