@@ -33,10 +33,10 @@
         "message": "Каталог"
     },
     "page_new_releases": {
-        "message": "Новые Релизы"
+        "message": "Новые Эпизоды"
     },
     "page_in_progress": {
-        "message": "На паузе"
+        "message": "Начатое"
     },
     "page_starred": {
         "message": "Избранное"
