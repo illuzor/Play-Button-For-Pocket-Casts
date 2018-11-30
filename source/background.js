@@ -1,7 +1,7 @@
 var pcTab;
 var playFromMediaKey;
 var action = "init";
-const URL = "https://playbeta.pocketcasts.com/";
+const URL = "https://playbeta.pocketcasts.com/web/";
 
 chrome.browserAction.onClicked.addListener(buttonClick);
 chrome.commands.onCommand.addListener(mediaButtonPress);
@@ -102,7 +102,7 @@ function getWindows(windows) {
                     if (items.page != "none") {
                         var finalUrl = URL;
                         if (items.page != "default")
-                            finalUrl += "web/" + items.page;
+                            finalUrl += items.page;
 
                         chrome.storage.sync.get({ pin_tab: false },
                             function(items) {
