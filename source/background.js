@@ -1,7 +1,7 @@
 var pcTab;
 var playFromMediaKey;
 var action = "init";
-const URL = "https://playbeta.pocketcasts.com/web/";
+const URL = "https://play.pocketcasts.com/web/";
 
 chrome.browserAction.onClicked.addListener(buttonClick);
 chrome.commands.onCommand.addListener(mediaButtonPress);

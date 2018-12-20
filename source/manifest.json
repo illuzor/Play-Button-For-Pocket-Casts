@@ -3,7 +3,7 @@
     "name": "__MSG_ext_name__",
     "short_name": "__MSG_ext_short_name__",
     "description": "__MSG_ext_description__",
-    "version": "2.0.8",
+    "version": "2.0.9",
     "author": "Artem Zanin",
     "default_locale": "en",
     "icons": {
@@ -18,7 +18,7 @@
     "permissions": [
         "storage",
         "tabs",
-        "https://playbeta.pocketcasts.com/*/"
+        "https://play.pocketcasts.com/*/"
     ],
     "background": {
         "persistent": false,
@@ -28,7 +28,7 @@
     },
     "content_scripts": [{
         "matches": [
-            "https://playbeta.pocketcasts.com/*/"
+            "https://play.pocketcasts.com/*/"
         ],
         "js": [
             "action-play.js",
