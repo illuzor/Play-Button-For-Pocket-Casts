@@ -61,7 +61,7 @@ function getWindows(windows) {
     var pcTabs = [];
     for (var i = 0; i < windows.length; i++) {
         for (var j = 0; j < windows[i].tabs.length; j++) {
-            if (windows[i].tabs[j].title == "Pocket Casts")
+            if (windows[i].tabs[j].url.includes(URL))
                 pcTabs.push(windows[i].tabs[j]);
         }
     }
