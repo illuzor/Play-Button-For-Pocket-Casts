@@ -2,8 +2,14 @@
     "enable_play_pause": {
         "message": "Использовать физическую кнопку ⏯"
     },
+    "enable_play_pause_s": {
+        "message": "Использовать комбинацию ⏯"
+    },
     "enable_play_prev_next": {
         "message": "Использовать физические кнопки ⏮/⏭"
+    },
+    "enable_play_prev_next_s": {
+        "message": "Использовать комбинации ⏮/⏭"
     },
     "show_ntp": {
         "message": "Показывать сообщение «Подкасты не найдены»"

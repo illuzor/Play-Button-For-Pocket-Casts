@@ -2,8 +2,14 @@
     "enable_play_pause": {
         "message": "Enable ⏯ hardware key"
     },
+    "enable_play_pause_s": {
+        "message": "Enable ⏯ shortcut"
+    },
     "enable_play_prev_next": {
         "message": "Enable ⏮/⏭ hardware keys"
+    },
+    "enable_play_prev_next_s": {
+        "message": "Enable ⏮/⏭ shortcuts"
     },
     "show_ntp": {
         "message": "Show «Nothing to play» alert"

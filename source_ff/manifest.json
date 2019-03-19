@@ -43,19 +43,19 @@
     "commands": {
         "play-pause": {
             "suggested_key": {
-                "default": "MediaPlayPause"
+                "default": "Ctrl+Alt+P"
             },
             "description": "__MSG_play_pause__"
         },
         "jump-back": {
             "suggested_key": {
-                "default": "MediaPrevTrack"
+                "default": "Ctrl+Alt+B"
             },
             "description": "__MSG_jump_back__"
         },
         "jump-forward": {
             "suggested_key": {
-                "default": "MediaNextTrack"
+                "default": "Ctrl+Alt+F"
             },
             "description": "__MSG_jump_forward__"
         }
