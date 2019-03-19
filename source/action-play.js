@@ -3,7 +3,7 @@
 var playButtons = document.getElementsByClassName("animated-play-button");
 
 if (playButtons.length != 0) {
-    playButtons[0].click();
+    playButtons[playButtons.length - 1].click();
     ntp = 0;
 } else {
     if (play != "none") {
