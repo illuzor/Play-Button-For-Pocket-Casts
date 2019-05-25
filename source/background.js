@@ -7,6 +7,10 @@ chrome.browserAction.onClicked.addListener(buttonClick);
 chrome.commands.onCommand.addListener(mediaButtonPress);
 
 chrome.runtime.onMessage.addListener(function(message, sender, resp) {
+    if(message.state == "Error"){
+        chrome.tabs.executeScript(pcTab.id, { file: "action-play.js" }, playPause);
+        return;
+    }
     chrome.browserAction.setIcon({ path: "images/" + message.state + ".png" });
     chrome.browserAction.setTitle({ title: chrome.i18n.getMessage(message.state) });
 });
