@@ -1,43 +1,43 @@
-﻿var ntp = 1;
+﻿var nothingToPlay = 1;
 
 var playButtons = document.getElementsByClassName("animated-play-button");
 
 if (playButtons.length != 0) {
     playButtons[playButtons.length - 1].click();
-    ntp = 0;
+    nothingToPlay = 0;
 } else {
     if (play != "none") {
 
-        var allDivs = document.querySelectorAll('.ReactVirtualized__Table__row.row.clickable');
-        var divs = new Array();
+        var allPodcasts = document.querySelectorAll('.ReactVirtualized__Table__row.row.clickable');
+        var podcastsToPlay = new Array();
 
-        for (i = 0; i < allDivs.length; i++) {
-            if (!allDivs[i].classList.contains("played"))
-                divs[divs.length] = allDivs[i];
+        for (i = 0; i < allPodcasts.length; i++) {
+            if (!allPodcasts[i].classList.contains("played"))
+                podcastsToPlay[podcastsToPlay.length] = allPodcasts[i];
         }
 
-        if (divs.length) {
-            var num;
+        if (podcastsToPlay.length) {
+            var positionToPlay;
 
             switch (play) {
                 case "first":
-                    num = 0;
+                    positionToPlay = 0;
                     break;
                 case "last":
-                    num = divs.length - 1;
+                    positionToPlay = podcastsToPlay.length - 1;
                     break;
                 case "random":
-                    num = Math.floor(Math.random() * divs.length);
+                    positionToPlay = Math.floor(Math.random() * podcastsToPlay.length);
                     break;
             }
 
-            divs[num].click();
+            podcastsToPlay[positionToPlay].click();
             document.getElementsByClassName("animated-play-button")[0].click();
             document.getElementsByClassName("close-button")[0].click();
 
-            ntp = 0;
+            nothingToPlay = 0;
         }
     }
 }
 
-ntp;
+nothingToPlay;
