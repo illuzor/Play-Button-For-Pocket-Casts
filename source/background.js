@@ -1,4 +1,4 @@
-const URL = "https://play.pocketcasts.com/web/";
+const URL = "https://play.pocketcasts.com/";
 
 const ACTION_INIT = "init";
 const ACTION_PLAY = "play";
