@@ -47,6 +47,9 @@
     "page_starred": {
         "message": "Starred"
     },
+    "page_files": {
+        "message": "Files"
+    },
     "page_none": {
         "message": "Disabled"
     },

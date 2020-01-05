@@ -36,16 +36,19 @@
         "message": "Подкасты"
     },
     "page_discover": {
-        "message": "Каталог"
+        "message": "Рекомендации"
     },
     "page_new_releases": {
-        "message": "Новые Эпизоды"
+        "message": "Новые Выпуски"
     },
     "page_in_progress": {
-        "message": "Начатое"
+        "message": "В Процессе"
     },
     "page_starred": {
         "message": "Избранное"
+    },
+    "page_files": {
+        "message": "Файлы"
     },
     "page_none": {
         "message": "Отключено"
