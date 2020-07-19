@@ -38,4 +38,4 @@ This extension supports multilanguage. If you want help to translate it to your 
 Or just send me translated **messages.json** via email.
 
 ## See also
-[Play-Button-For-Google-Play-Music](https://github.com/illuzor/Play-Button-For-Google-Play-Music)
+[Play-Button-For-Yandex-Music](https://github.com/illuzor/Play-Button-For-Yandex-Music)
