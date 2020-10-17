@@ -1,6 +1,16 @@
 ﻿var nothingToPlay = 1;
 
-var playButtons = document.getElementsByClassName("animated-play-button");
+var playButtons = new Array();
+var topButtons = document.querySelectorAll('[class^="EpisodePopupToolbarstyled__PlayButtonContainer"]');
+var playButtonsBottom = document.querySelectorAll('[class^="AnimatedPlayButtonstyled"]');
+
+for (i = 0; i < topButtons.length; i++) {
+    playButtons.push(topButtons[i])
+}
+
+for (i = 0; i < playButtonsBottom.length; i++) {
+    playButtons.push(playButtonsBottom[i])
+}
 
 if (playButtons.length != 0) {
     playButtons[playButtons.length - 1].click();
@@ -31,10 +41,7 @@ if (playButtons.length != 0) {
                     break;
             }
 
-            podcastsToPlay[positionToPlay].click();
-            document.getElementsByClassName("animated-play-button")[0].click();
-            document.getElementsByClassName("close-button")[0].click();
-
+            podcastsToPlay[positionToPlay].querySelector('[aria-label="Play"]').click();
             nothingToPlay = 0;
         }
     }
