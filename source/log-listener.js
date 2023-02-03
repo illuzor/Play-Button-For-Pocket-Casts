@@ -5,8 +5,6 @@ if (!script) {
             chrome.runtime.sendMessage({ state: "Pause" });
         } else if (event.includes("fired pause") || event.includes("fired ended") || event.includes("fired abort")) {
             chrome.runtime.sendMessage({ state: "Play" });
-        } else if (event.includes("Audio event fired error")) {
-            chrome.runtime.sendMessage({ state: "Error" });
         }
     }, false);
 
