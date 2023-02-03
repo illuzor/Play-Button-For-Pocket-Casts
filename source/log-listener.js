@@ -1,10 +1,10 @@
 if (!script) {
     window.addEventListener("LogEvent", function (e) {
         var event = e.detail;
-        if (event.includes("fired playing") || event.includes("fired waiting")) {
-            chrome.runtime.sendMessage({ state: "Pause" });
-        } else if (event.includes("fired pause") || event.includes("fired ended") || event.includes("fired abort")) {
-            chrome.runtime.sendMessage({ state: "Play" });
+        if (event.includes("[Audio] playing") || event.includes("[Audio] waiting")) {
+            chrome.runtime.sendMessage({state: "Pause"});
+        } else if (event.includes("[Audio] pause") || event.includes("[Audio] ended") || event.includes("[Audio] abort")) {
+            chrome.runtime.sendMessage({state: "Play"});
         }
     }, false);
 
