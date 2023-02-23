@@ -1,5 +1,5 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
     "name": "__MSG_ext_name__",
     "short_name": "__MSG_ext_short_name__",
     "description": "__MSG_ext_description__",
@@ -12,34 +12,31 @@
         "128": "images/icon128.png"
     },
     "options_ui": {
-        "page": "options.html",
-        "chrome_style": true
+        "page": "options.html"
     },
     "permissions": [
         "storage",
         "tabs",
+        "scripting"
+    ],
+    "host_permissions": [
         "https://play.pocketcasts.com/*/"
     ],
     "background": {
-        "persistent": false,
-        "scripts": [
-            "background.js"
-        ]
+        "service_worker": "background.js"
     },
-    "content_scripts": [{
-        "matches": [
-            "https://play.pocketcasts.com/*/"
-        ],
-        "js": [
-            "action-play.js",
-            "action-skip.js",
-            "log-listener.js"
-        ]
-    }],
-    "browser_action": {
-        "default_title": "__MSG_Play__",
-        "default_icon": "images/Play.png"
-    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://play.pocketcasts.com/*/"
+            ],
+            "js": [
+                "action-play.js",
+                "action-skip.js",
+                "log-listener.js"
+            ]
+        }
+    ],
     "commands": {
         "play-pause": {
             "suggested_key": {
@@ -62,5 +59,6 @@
             "description": "__MSG_jump_forward__",
             "global": true
         }
-    }
+    },
+    "action": {}
 }
