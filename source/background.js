@@ -9,12 +9,12 @@ var pcTab;
 var playFromMediaKey;
 var action = ACTION_INIT;
 
-chrome.browserAction.onClicked.addListener(buttonClick);
+chrome.action.onClicked.addListener(buttonClick);
 chrome.commands.onCommand.addListener(mediaButtonPress);
 
 chrome.runtime.onMessage.addListener(function (message, sender, resp) {
-    chrome.browserAction.setIcon({ path: "images/" + message.state + ".png" });
-    chrome.browserAction.setTitle({ title: chrome.i18n.getMessage(message.state) });
+    chrome.action.setIcon({path: "images/" + message.state + ".png"});
+    chrome.action.setTitle({title: chrome.i18n.getMessage(message.state)});
 });
 
 gotoGetWindows();
@@ -40,7 +40,7 @@ function mediaButtonPress(command) {
 }
 
 function playButtonPress() {
-    chrome.storage.sync.get({ play_enabled: true },
+    chrome.storage.sync.get({play_enabled: true},
         function (items) {
             if (items.play_enabled) {
                 action = ACTION_PLAY;
@@ -51,7 +51,7 @@ function playButtonPress() {
 }
 
 function skipButtonPress(skipDirection) {
-    chrome.storage.sync.get({ skip_enabled: true },
+    chrome.storage.sync.get({skip_enabled: true},
         function (items) {
             if (items.skip_enabled) {
                 action = skipDirection;
@@ -62,7 +62,7 @@ function skipButtonPress(skipDirection) {
 
 function gotoGetWindows() {
     pcTab = null;
-    chrome.windows.getAll({ populate: true }, getWindows);
+    chrome.windows.getAll({populate: true}, getWindows);
 }
 
 function getWindows(windows) {
@@ -78,23 +78,23 @@ function getWindows(windows) {
         pcTab = pcTabs[0];
         performAction();
     } else {
-        if (action == ACTION_PLAY && !playFromMediaKey)
+        if (action == ACTION_PLAY && !playFromMediaKey) {
             openNewTab();
+        }
     }
 }
 
 function performAction() {
     switch (action) {
         case ACTION_INIT:
-            chrome.tabs.executeScript(pcTab.id, { file: "log-listener.js" });
+            registerLogListener(pcTab.id);
             break;
         case ACTION_PLAY:
-            chrome.storage.sync.get({ play: "first" }, function (items) {
-                chrome.tabs.executeScript(pcTab.id, { code: 'var play = "' + items.play + '";' }, function () {
-                    chrome.tabs.executeScript(pcTab.id, { file: "action-play.js" }, playPause);
-                    chrome.tabs.executeScript(pcTab.id, { file: "log-listener.js" });
-                });
-            });
+            registerLogListener(pcTab.id)
+            chrome.scripting.executeScript({
+                target: {tabId: pcTab.id},
+                files: ["action-play.js"]
+            })
             break;
         case ACTION_FORWARD:
             skip("skip-forward-button");
@@ -105,20 +105,25 @@ function performAction() {
     }
 }
 
+// TODO fix
+function registerLogListener(tabId) {
+    chrome.scripting.executeScript({
+        target: {tabId: tabId},
+        files: ["log-listener.js"]
+    })
+}
+
 function openNewTab() {
-    chrome.browserAction.setIcon({ path: "images/Play.png" });
-    chrome.browserAction.setTitle({ title: chrome.i18n.getMessage("Play") });
-    chrome.storage.sync.get({ page: "default" }, function (items) {
+    chrome.action.setIcon({path: "images/Play.png"});
+    chrome.action.setTitle({title: chrome.i18n.getMessage("Play")});
+    chrome.storage.sync.get({page: "default"}, function (items) {
         if (items.page != "none") {
             var finalUrl = URL;
             if (items.page != "default")
                 finalUrl += items.page;
-            chrome.storage.sync.get({ pin_tab: false }, function (items) {
-                chrome.tabs.create({ url: finalUrl, pinned: items.pin_tab });
-                chrome.tabs.query({
-                    active: true, currentWindow: true
-                }, function (tabs) {
-                    chrome.tabs.executeScript(tabs[0].id, { file: "log-listener.js" });
+            chrome.storage.sync.get({pin_tab: false}, function (items) {
+                chrome.tabs.create({url: finalUrl, pinned: items.pin_tab}, function (tab) {
+                    registerLogListener(tab.id)
                 });
             });
         }
@@ -126,18 +131,11 @@ function openNewTab() {
 }
 
 function skip(type) {
-    chrome.tabs.executeScript(pcTab.id, { code: 'var type = "' + type + '";' },
-        function () {
-            chrome.tabs.executeScript(pcTab.id, { file: "action-skip.js" });
+    chrome.scripting.executeScript({target: {tabId: pcTab.id}, files: ["action-skip.js"]}, () => {
+        chrome.scripting.executeScript({
+            target: {tabId: pcTab.id},
+            args: [type],
+            func: (...args) => performSkip(...args),
         });
-}
-
-function playPause(nothigToPlay) {
-    if (nothigToPlay == 1) {
-        chrome.storage.sync.get({ ntp_enabled: true },
-            function (items) {
-                if (items.ntp_enabled)
-                    alert(chrome.i18n.getMessage('ntp'));
-            });
-    }
+    });
 }
