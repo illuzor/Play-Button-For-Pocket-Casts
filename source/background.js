@@ -1,13 +1,12 @@
 const URL = "https://play.pocketcasts.com/";
 
-const ACTION_INIT = "init";
 const ACTION_PLAY = "play";
 const ACTION_FORWARD = "forward";
 const ACTION_BACK = "back";
 
 var pcTab;
 var playFromMediaKey;
-var action = ACTION_INIT;
+var action = null;
 
 chrome.action.onClicked.addListener(buttonClick);
 chrome.commands.onCommand.addListener(mediaButtonPress);
@@ -86,9 +85,6 @@ function getWindows(windows) {
 
 function performAction() {
     switch (action) {
-        case ACTION_INIT:
-            registerLogListener(pcTab.id);
-            break;
         case ACTION_PLAY:
             registerLogListener(pcTab.id)
             chrome.scripting.executeScript({
