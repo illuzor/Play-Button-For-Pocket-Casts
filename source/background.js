@@ -101,8 +101,6 @@ function performAction() {
     }
 }
 
-// TODO fix
-
 function openNewTab() {
     chrome.action.setIcon({path: "images/Play.png"});
     chrome.action.setTitle({title: chrome.i18n.getMessage("Play")});
