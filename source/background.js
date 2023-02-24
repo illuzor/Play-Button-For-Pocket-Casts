@@ -7,6 +7,7 @@ const ACTION_BACK = "back";
 var pcTab;
 var playFromMediaKey;
 var action = null;
+var isFirstPlay = true
 
 chrome.action.onClicked.addListener(buttonClick);
 chrome.commands.onCommand.addListener(mediaButtonPress);
@@ -87,10 +88,12 @@ function performAction() {
     switch (action) {
         case ACTION_PLAY:
             registerLogListener(pcTab.id)
-            chrome.scripting.executeScript({
-                target: {tabId: pcTab.id},
-                files: ["action-play.js"]
-            })
+            if (isFirstPlay) {
+                isFirstPlay = false
+                setTimeout(performPlay, 100);
+            } else {
+                performPlay()
+            }
             break;
         case ACTION_FORWARD:
             skip("skip-forward-button");
@@ -99,6 +102,13 @@ function performAction() {
             skip("skip-back-button");
             break;
     }
+}
+
+function performPlay() {
+    chrome.scripting.executeScript({
+        target: {tabId: pcTab.id},
+        files: ["action-play.js"]
+    })
 }
 
 function openNewTab() {
