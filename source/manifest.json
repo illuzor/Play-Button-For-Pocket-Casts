@@ -33,10 +33,25 @@
             "js": [
                 "action-play.js",
                 "action-skip.js",
-                "log-listener.js"
+                "log-listener-injector.js"
             ]
         }
     ],
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "log-listener.js"
+            ],
+            "matches": [
+                "https://*/*"
+            ]
+        }
+    ],
+    "externally_connectable": {
+        "matches": [
+            "*://*.pocketcasts.com/*"
+        ]
+    },
     "commands": {
         "play-pause": {
             "suggested_key": {

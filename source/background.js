@@ -12,7 +12,7 @@ var action = ACTION_INIT;
 chrome.action.onClicked.addListener(buttonClick);
 chrome.commands.onCommand.addListener(mediaButtonPress);
 
-chrome.runtime.onMessage.addListener(function (message, sender, resp) {
+chrome.runtime.onMessageExternal.addListener(function (message, sender, resp) {
     chrome.action.setIcon({path: "images/" + message.state + ".png"});
     chrome.action.setTitle({title: chrome.i18n.getMessage(message.state)});
 });
@@ -106,12 +106,6 @@ function performAction() {
 }
 
 // TODO fix
-function registerLogListener(tabId) {
-    chrome.scripting.executeScript({
-        target: {tabId: tabId},
-        files: ["log-listener.js"]
-    })
-}
 
 function openNewTab() {
     chrome.action.setIcon({path: "images/Play.png"});
@@ -128,6 +122,13 @@ function openNewTab() {
             });
         }
     });
+}
+
+function registerLogListener(tabId) {
+    chrome.scripting.executeScript({
+        target: {tabId: tabId},
+        files: ["log-listener-injector.js"]
+    })
 }
 
 function skip(type) {

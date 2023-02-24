@@ -33,7 +33,7 @@
         "js": [
             "action-play.js",
             "action-skip.js",
-            "log-listener.js"
+            "log-listener-injector.js"
         ]
     }],
     "browser_action": {
