@@ -14,7 +14,7 @@ chrome.commands.onCommand.addListener(mediaButtonPress);
 
 chrome.runtime.onMessage.addListener(
     function (request, sender, sendResponse) {
-        chromle.action.setIcon({path: "images/" + request.state + ".png"});
+        chrome.action.setIcon({path: "images/" + request.state + ".png"});
         chrome.action.setTitle({title: chrome.i18n.getMessage(request.state)});
     }
 );
