@@ -32,18 +32,7 @@
             ],
             "js": [
                 "action-play.js",
-                "action-skip.js",
-                "log-listener-injector.js"
-            ]
-        }
-    ],
-    "web_accessible_resources": [
-        {
-            "resources": [
-                "log-listener.js"
-            ],
-            "matches": [
-                "https://*/*"
+                "action-skip.js"
             ]
         }
     ],

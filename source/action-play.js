@@ -1,4 +1,4 @@
-﻿var nothingToPlay = 1;
+﻿﻿var nothingToPlay = 1;
 
 var playButtons = new Array();
 var topButtons = document.querySelectorAll('[class^="EpisodePopupToolbarstyled__PlayButtonContainer"]');
@@ -12,13 +12,38 @@ for (i = 0; i < playButtonsBottom.length; i++) {
     playButtons.push(playButtonsBottom[i])
 }
 
-if (playButtons) {
+if (playButtons.length > 0) {
     playButtons[playButtons.length - 1].click();
     nothingToPlay = 0;
+
+    let mainPlayButton = playButtonsBottom[0]
+    postButtonState(mainPlayButton.getAttribute('aria-pressed') == "true")
 } else {
     chrome.storage.sync.get({play: "first"}, function (items) {
         playNewPodcast(items.play)
     });
+}
+
+if (typeof mainPlayButton === 'undefined') {
+    let mainPlayButton = playButtonsBottom[0]
+    listenForPlayState(mainPlayButton)
+}
+
+function listenForPlayState(mainPlayButton) {
+
+    function handleAttributeChanges(mutationsList, observer) {
+        for (var mutation of mutationsList) {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'aria-pressed') {
+                let ariaPressedValue = mainPlayButton.getAttribute(mutation.attributeName)
+                postButtonState(ariaPressedValue == "true")
+            }
+        }
+    }
+
+    let observer = new MutationObserver(handleAttributeChanges);
+
+    let config = {attributes: true, attributeOldValue: true};
+    observer.observe(mainPlayButton, config);
 }
 
 function playNewPodcast(play) {
@@ -51,6 +76,25 @@ function playNewPodcast(play) {
 
         podcastsToPlay[positionToPlay].querySelector('[aria-label="Play"]').click();
         nothingToPlay = 0;
+        postButtonState(false) // TODO check
+    }
+}
+
+function postButtonState(isPlaying) {
+    const EXT_ID = "ogdnlmiknnmedpcnjnkjncdjjgfdkiik"
+    const EXT_ID_LOCAL = "gimcijegdcaeebbegnkglpgmpgmkeklo"
+    let extensionIds = [EXT_ID, EXT_ID_LOCAL]
+
+    if (isPlaying) {
+        extensionIds.forEach(id => {
+                chrome.runtime.sendMessage({state: "Pause"})
+            }
+        )
+    } else {
+        extensionIds.forEach(id => {
+                chrome.runtime.sendMessage({state: "Play"})
+            }
+        )
     }
 }
 

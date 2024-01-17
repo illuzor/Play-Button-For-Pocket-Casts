@@ -12,10 +12,12 @@ var isFirstPlay = true
 chrome.action.onClicked.addListener(buttonClick);
 chrome.commands.onCommand.addListener(mediaButtonPress);
 
-chrome.runtime.onMessageExternal.addListener(function (message, sender, resp) {
-    chrome.action.setIcon({path: "images/" + message.state + ".png"});
-    chrome.action.setTitle({title: chrome.i18n.getMessage(message.state)});
-});
+chrome.runtime.onMessage.addListener(
+    function (request, sender, sendResponse) {
+        chromle.action.setIcon({path: "images/" + request.state + ".png"});
+        chrome.action.setTitle({title: chrome.i18n.getMessage(request.state)});
+    }
+);
 
 gotoGetWindows();
 
@@ -87,7 +89,6 @@ function getWindows(windows) {
 function performAction() {
     switch (action) {
         case ACTION_PLAY:
-            registerLogListener(pcTab.id)
             if (isFirstPlay) {
                 isFirstPlay = false
                 setTimeout(performPlay, 100);
@@ -120,19 +121,10 @@ function openNewTab() {
             if (items.page != "default")
                 finalUrl += items.page;
             chrome.storage.sync.get({pin_tab: false}, function (items) {
-                chrome.tabs.create({url: finalUrl, pinned: items.pin_tab}, function (tab) {
-                    registerLogListener(tab.id)
-                });
+                chrome.tabs.create({url: finalUrl, pinned: items.pin_tab}, function (tab) { });
             });
         }
     });
-}
-
-function registerLogListener(tabId) {
-    chrome.scripting.executeScript({
-        target: {tabId: tabId},
-        files: ["log-listener-injector.js"]
-    })
 }
 
 function skip(type) {
