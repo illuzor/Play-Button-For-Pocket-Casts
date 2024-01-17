@@ -12,10 +12,12 @@ var isFirstPlay = true
 chrome.action.onClicked.addListener(buttonClick);
 chrome.commands.onCommand.addListener(mediaButtonPress);
 
-chrome.runtime.onMessageExternal.addListener(function (message, sender, resp) {
-    chrome.action.setIcon({path: "images/" + message.state + ".png"});
-    chrome.action.setTitle({title: chrome.i18n.getMessage(message.state)});
-});
+chrome.runtime.onMessage.addListener(
+    function (request, sender, sendResponse) {
+        chrome.action.setIcon({path: "images/" + request.state + ".png"});
+        chrome.action.setTitle({title: chrome.i18n.getMessage(request.state)});
+    }
+);
 
 gotoGetWindows();
 
