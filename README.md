@@ -24,7 +24,7 @@ This extension allows controlling playing of a current podcast on pocketcasts si
 
 ## Screenshot
 
-![pc_screenshot1](https://github.com/user-attachments/assets/ce690016-dfe3-4986-9de8-c6431ff6d5aa)
+![pc_screenshot2](https://github.com/user-attachments/assets/a62534f1-6057-48ba-b97c-badba5747a1f)
 
 ## Localization
 This extension supports multilanguage. If you want help to translate it to your language:
