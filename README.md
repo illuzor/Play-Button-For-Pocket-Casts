@@ -24,7 +24,7 @@ This extension allows controlling playing of a current podcast on pocketcasts si
 
 ## Screenshot
 
-![pc_screenshot2.png]([http://download.illuzor.com/images/github/pc_screenshot2.png](https://github.com/user-attachments/assets/ed457ce7-627f-4f75-9404-be1cd8f7c07f))
+![pc_screenshot1](https://github.com/user-attachments/assets/ce690016-dfe3-4986-9de8-c6431ff6d5aa)
 
 ## Localization
 This extension supports multilanguage. If you want help to translate it to your language:
