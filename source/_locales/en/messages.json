@@ -1,15 +1,15 @@
 {
     "enable_play_pause": {
-        "message": "Enable ⏯ hardware key"
+        "message": "Enable ⏯\uFE0F hardware key"
     },
     "enable_play_pause_s": {
-        "message": "Enable ⏯ shortcut"
+        "message": "Enable ⏯\uFE0F shortcut"
     },
     "enable_play_prev_next": {
-        "message": "Enable ⏮/⏭ hardware keys"
+        "message": "Enable ⏮\uFE0F/⏭\uFE0F hardware keys"
     },
     "enable_play_prev_next_s": {
-        "message": "Enable ⏮/⏭ shortcuts"
+        "message": "Enable ⏮\uFE0F/⏭\uFE0F shortcuts"
     },
     "show_ntp": {
         "message": "Show «Nothing to play» alert"
