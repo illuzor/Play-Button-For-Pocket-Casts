@@ -139,6 +139,7 @@ body {
 .select-wrapper label {
     font-size: 14px;
     color: var(--text-primary);
+    margin-bottom: 4px; /* Добавляем отступ снизу */
 }
 
 select {
