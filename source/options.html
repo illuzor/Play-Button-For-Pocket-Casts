@@ -1,61 +1,58 @@
 <!DOCTYPE html>
 <html>
-
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="options.css">
+</head>
 <body>
-    <label id="play_enabled_label">
+<div class="container">
+    <div class="checkbox-wrapper">
         <input type="checkbox" id="play_enabled">
-    </label>
-
-    </br>
-
-    <label id="skip_enabled_label">
+        <label for="play_enabled" id="play_enabled_label"></label>
+    </div>
+    <div class="checkbox-wrapper">
         <input type="checkbox" id="skip_enabled">
-    </label>
+        <label for="skip_enabled" id="skip_enabled_label"></label>
+    </div>
 
-    </br>
-
-    <label id="ntp_enabled_label">
+    <div class="checkbox-wrapper">
         <input type="checkbox" id="ntp_enabled">
-    </label>
-
-    </br>
-    </br>
-
-    <label id="page_label">
-      </br>
-      <select id="page">
-          <option value="default"/>
-          <option value="podcasts"/>
-          <option value="discover"/>
-          <option value="new-releases"/>
-          <option value="in-progress"/>
-          <option value="starred"/>
-          <option value="uploaded-files"/>
-          <option value="none"/>
-      </select>
-    </label>
-
-    <label id="pin_tab_label">
+        <label for="ntp_enabled" id="ntp_enabled_label"></label>
+    </div>
+    <div class="checkbox-wrapper">
         <input type="checkbox" id="pin_tab">
-    </label>
+        <label for="pin_tab" id="pin_tab_label"></label>
+    </div>
 
-    </br>
-    </br>
+    <div class="section">
+        <label id="page_label" class="section-title"></label>
+        <select id="page">
+            <option value="default"></option>
+            <option value="podcasts"></option>
+            <option value="discover"></option>
+            <option value="new-releases"></option>
+            <option value="in-progress"></option>
+            <option value="starred"></option>
+            <option value="uploaded-files"></option>
+            <option value="none"></option>
+        </select>
+    </div>
 
-    <label id="play_label">
-      </br>
-      <select id="play">
-          <option value="first"/>
-          <option value="last"/>
-          <option value="random"/>
-          <option value="none"/>
-      </select>
-    <label>
-    </br>
-    </br>
+    <div class="section">
+        <label id="play_label" class="section-title"></label>
+        <select id="play">
+            <option value="first"></option>
+            <option value="last"></option>
+            <option value="random"></option>
+            <option value="none"></option>
+        </select>
+    </div>
 
-    <button id="save"/> <button id="shortcuts" style="float: right;"/>
-    <script src="options.js"></script>
+    <div class="button-container">
+        <button id="save"></button>
+        <button id="shortcuts"></button>
+    </div>
+</div>
+<script src="options.js"></script>
 </body>
-
 </html>
