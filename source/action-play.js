@@ -1,6 +1,4 @@
-﻿(function() {
-    let nothingToPlay = 1;
-
+﻿(function () {
     const playButtons = [];
     const topButtons = document.querySelectorAll('[class^="EpisodePopupToolbarstyled__PlayButtonContainer"]');
     const playButtonsBottom = document.querySelectorAll('[class^="AnimatedPlayButtonstyled"]');
@@ -15,7 +13,6 @@
 
     if (playButtons.length > 0) {
         playButtons[playButtons.length - 1].click();
-        nothingToPlay = 0;
 
         const mainPlayButton = playButtonsBottom[0];
         postButtonState(mainPlayButton.getAttribute('aria-pressed') === "true");
@@ -51,33 +48,32 @@
             return;
         }
 
-        const allPodcasts = document.querySelectorAll('.ReactVirtualized__Table__row.row.clickable');
-        const podcastsToPlay = [];
+        const podcastsPlayButtons = document.querySelectorAll('[aria-label="Play"]');
 
-        for (let i = 0; i < allPodcasts.length; i++) {
-            if (!allPodcasts[i].classList.contains("played"))
-                podcastsToPlay.push(allPodcasts[i]);
+        if (!podcastsPlayButtons.length) {
+            chrome.storage.sync.get({ntp_enabled: true}, function (items) {
+                if (items.ntp_enabled) {
+                    alert(chrome.i18n.getMessage('ntp'));
+                }
+            });
+            return;
         }
 
-        if (podcastsToPlay.length) {
-            let positionToPlay;
-
-            switch (play) {
-                case "first":
-                    positionToPlay = 0;
-                    break;
-                case "last":
-                    positionToPlay = podcastsToPlay.length - 1;
-                    break;
-                case "random":
-                    positionToPlay = Math.floor(Math.random() * podcastsToPlay.length);
-                    break;
-            }
-
-            podcastsToPlay[positionToPlay].querySelector('[aria-label="Play"]').click();
-            nothingToPlay = 0;
-            postButtonState(false);
+        let positionToPlay;
+        switch (play) {
+            case "first":
+                positionToPlay = 0;
+                break;
+            case "last":
+                positionToPlay = podcastsPlayButtons.length - 1;
+                break;
+            case "random":
+                positionToPlay = Math.floor(Math.random() * podcastsPlayButtons.length);
+                break;
         }
+
+        podcastsPlayButtons[positionToPlay].click();
+        postButtonState(false);
     }
 
     function postButtonState(isPlaying) {
@@ -88,14 +84,6 @@
         const state = isPlaying ? "Pause" : "Play";
         extensionIds.forEach(id => {
             chrome.runtime.sendMessage({state});
-        });
-    }
-
-    if (nothingToPlay === 1) {
-        chrome.storage.sync.get({ntp_enabled: true}, function (items) {
-            if (items.ntp_enabled) {
-                alert(chrome.i18n.getMessage('ntp'));
-            }
         });
     }
 })();
