@@ -1,4 +1,4 @@
-﻿﻿var nothingToPlay = 1;
+﻿var nothingToPlay = 1;
 
 var playButtons = new Array();
 var topButtons = document.querySelectorAll('[class^="EpisodePopupToolbarstyled__PlayButtonContainer"]');
