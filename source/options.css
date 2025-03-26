@@ -75,6 +75,11 @@ body {
     transition: background-color 0.2s;
 }
 
+.select-wrapper .checkbox-wrapper {
+    padding-left: 0; /* Убираем или уменьшаем левый отступ */
+    margin-left: 0; /* Убираем или уменьшаем левый margin */
+}
+
 .checkbox-wrapper:hover {
     background-color: var(--hover-color);
     border-radius: 4px;
