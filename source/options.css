@@ -1,0 +1,222 @@
+:root {
+    --primary-color: #e53935;
+    --primary-light: #ff6f60;
+    --text-on-primary: #ffffff;
+    --surface-color: #ffffff;
+    --background-color: #fafafa;
+    --text-primary: #212121;
+    --text-secondary: #757575;
+    --border-color: #e0e0e0;
+    --hover-color: #f5f5f5;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary-color: #f44336;
+        --primary-light: #ff7961;
+        --text-on-primary: #ffffff;
+        --surface-color: #1e1e1e;
+        --background-color: #121212;
+        --text-primary: #e0e0e0;
+        --text-secondary: #a0a0a0;
+        --border-color: #3d3d3d;
+        --hover-color: #2d2d2d;
+    }
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    margin: 0;
+    padding: 24px;
+    background-color: var(--background-color);
+    color: var(--text-primary);
+    min-width: 400px;
+    line-height: 1.5;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.container {
+    background-color: var(--surface-color);
+    border-radius: 4px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    max-width: 500px;
+    margin: 0 auto;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.container::-webkit-scrollbar {
+    display: none;
+}
+
+.header {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 24px;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 12px;
+}
+
+.settings-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    padding: 6px 12px;
+    transition: background-color 0.2s;
+}
+
+.select-wrapper .checkbox-wrapper {
+    padding-left: 0; /* Убираем или уменьшаем левый отступ */
+    margin-left: 0; /* Убираем или уменьшаем левый margin */
+}
+
+.checkbox-wrapper:hover {
+    background-color: var(--hover-color);
+    border-radius: 4px;
+}
+
+.checkbox-wrapper input[type="checkbox"] {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--text-secondary);
+    border-radius: 2px;
+    margin-right: 12px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.checkbox-wrapper input[type="checkbox"]:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.checkbox-wrapper input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 1px;
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.checkbox-wrapper label {
+    font-size: 14px;
+    color: var(--text-primary);
+    cursor: pointer;
+}
+
+.select-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    padding: 6px 12px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    transition: background-color 0.2s;
+}
+
+.select-wrapper:hover {
+    background-color: var(--hover-color);
+    border-radius: 4px;
+}
+
+.select-wrapper label {
+    font-size: 14px;
+    color: var(--text-primary);
+    margin-bottom: 4px; /* Добавляем отступ снизу */
+}
+
+select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 14px;
+    color: var(--text-primary);
+    background-color: var(--surface-color);
+    cursor: pointer;
+    transition: all 0.2s;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23757575' d='M6 8.825L1.175 4 2.238 2.938 6 6.7l3.763-3.763L10.825 4z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 32px;
+}
+
+@media (prefers-color-scheme: dark) {
+    select {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23a0a0a0' d='M6 8.825L1.175 4 2.238 2.938 6 6.7l3.763-3.763L10.825 4z'/%3E%3C/svg%3E");
+    }
+}
+
+select:hover {
+    border-color: var(--text-secondary);
+}
+
+select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(229, 57, 53, 0.1);
+}
+
+/* Стили для кнопок */
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 32px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-color);
+}
+
+button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#save {
+    background-color: var(--primary-color);
+    color: var(--text-on-primary);
+}
+
+#save:hover {
+    background-color: var(--primary-light);
+}
+
+#shortcuts {
+    background-color: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+}
+
+#shortcuts:hover {
+    background-color: var(--hover-color);
+    border-color: var(--text-secondary);
+    color: var(--text-primary);
+}

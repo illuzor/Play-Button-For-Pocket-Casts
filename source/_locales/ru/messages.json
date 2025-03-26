@@ -1,15 +1,15 @@
 {
     "enable_play_pause": {
-        "message": "Использовать физическую кнопку ⏯"
+        "message": "Использовать физическую кнопку ⏯\uFE0F"
     },
     "enable_play_pause_s": {
-        "message": "Использовать комбинацию ⏯"
+        "message": "Использовать комбинацию ⏯\uFE0F"
     },
     "enable_play_prev_next": {
-        "message": "Использовать физические кнопки ⏮/⏭"
+        "message": "Использовать физические кнопки ⏮\uFE0F/⏭\uFE0F"
     },
     "enable_play_prev_next_s": {
-        "message": "Использовать комбинации ⏮/⏭"
+        "message": "Использовать комбинации ⏮\uFE0F/⏭\uFE0F"
     },
     "show_ntp": {
         "message": "Показывать сообщение «Подкасты не найдены»"

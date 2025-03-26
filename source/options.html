@@ -1,61 +1,59 @@
 <!DOCTYPE html>
 <html>
-
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="options.css">
+</head>
 <body>
-    <label id="play_enabled_label">
-        <input type="checkbox" id="play_enabled">
-    </label>
+<div class="container">
+    <div class="settings-list">
+        <div class="checkbox-wrapper">
+            <input type="checkbox" id="play_enabled">
+            <label for="play_enabled" id="play_enabled_label"></label>
+        </div>
+        <div class="checkbox-wrapper">
+            <input type="checkbox" id="skip_enabled">
+            <label for="skip_enabled" id="skip_enabled_label"></label>
+        </div>
+        <div class="checkbox-wrapper">
+            <input type="checkbox" id="ntp_enabled">
+            <label for="ntp_enabled" id="ntp_enabled_label"></label>
+        </div>
 
-    </br>
+        <div class="select-wrapper">
+            <label id="page_label" for="page"></label>
+            <select id="page">
+                <option value="default"></option>
+                <option value="podcasts"></option>
+                <option value="discover"></option>
+                <option value="new-releases"></option>
+                <option value="in-progress"></option>
+                <option value="starred"></option>
+                <option value="uploaded-files"></option>
+                <option value="none"></option>
+            </select>
+            <div class="checkbox-wrapper">
+                <input type="checkbox" id="pin_tab">
+                <label for="pin_tab" id="pin_tab_label"></label>
+            </div>
+        </div>
 
-    <label id="skip_enabled_label">
-        <input type="checkbox" id="skip_enabled">
-    </label>
+        <div class="select-wrapper">
+            <label id="play_label" for="play"></label>
+            <select id="play">
+                <option value="first"></option>
+                <option value="last"></option>
+                <option value="random"></option>
+                <option value="none"></option>
+            </select>
+        </div>
+    </div>
 
-    </br>
-
-    <label id="ntp_enabled_label">
-        <input type="checkbox" id="ntp_enabled">
-    </label>
-
-    </br>
-    </br>
-
-    <label id="page_label">
-      </br>
-      <select id="page">
-          <option value="default"/>
-          <option value="podcasts"/>
-          <option value="discover"/>
-          <option value="new-releases"/>
-          <option value="in-progress"/>
-          <option value="starred"/>
-          <option value="uploaded-files"/>
-          <option value="none"/>
-      </select>
-    </label>
-
-    <label id="pin_tab_label">
-        <input type="checkbox" id="pin_tab">
-    </label>
-
-    </br>
-    </br>
-
-    <label id="play_label">
-      </br>
-      <select id="play">
-          <option value="first"/>
-          <option value="last"/>
-          <option value="random"/>
-          <option value="none"/>
-      </select>
-    <label>
-    </br>
-    </br>
-
-    <button id="save"/> <button id="shortcuts" style="float: right;"/>
-    <script src="options.js"></script>
+    <div class="button-container">
+        <button id="save"></button>
+        <button id="shortcuts"></button>
+    </div>
+</div>
+<script src="options.js"></script>
 </body>
-
 </html>
