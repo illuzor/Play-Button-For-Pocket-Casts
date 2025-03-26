@@ -1,47 +1,63 @@
-document.getElementById('play_enabled_label').innerHTML += chrome.i18n.getMessage('enable_play_pause');
-document.getElementById('skip_enabled_label').innerHTML += chrome.i18n.getMessage('enable_play_prev_next');
-document.getElementById('ntp_enabled_label').innerHTML += chrome.i18n.getMessage('show_ntp');
-document.getElementById('page_label').innerHTML = chrome.i18n.getMessage('page_to_open') + ": " + document.getElementById('page_label').innerHTML;
-document.getElementById('pin_tab_label').innerHTML += chrome.i18n.getMessage('pin_tab');
-document.getElementById('play_label').innerHTML = chrome.i18n.getMessage('if_player_inactive') + ": " + document.getElementById('play_label').innerHTML;
-document.getElementById('save').innerHTML = chrome.i18n.getMessage('save');
-document.getElementById('shortcuts').innerHTML = chrome.i18n.getMessage('shortcuts');
-document.getElementById('page').options[0].text = chrome.i18n.getMessage('page_default');
-document.getElementById('page').options[1].text = chrome.i18n.getMessage('page_podcasts');
-document.getElementById('page').options[2].text = chrome.i18n.getMessage('page_discover');
-document.getElementById('page').options[3].text = chrome.i18n.getMessage('page_new_releases');
-document.getElementById('page').options[4].text = chrome.i18n.getMessage('page_in_progress');
-document.getElementById('page').options[5].text = chrome.i18n.getMessage('page_starred');
-document.getElementById('page').options[6].text = chrome.i18n.getMessage('page_files');
-document.getElementById('page').options[7].text = chrome.i18n.getMessage('page_none');
-document.getElementById('play').options[0].text = chrome.i18n.getMessage('play_first');
-document.getElementById('play').options[1].text = chrome.i18n.getMessage('play_last');
-document.getElementById('play').options[2].text = chrome.i18n.getMessage('play_random');
-document.getElementById('play').options[3].text = chrome.i18n.getMessage('play_none');
+document.addEventListener('DOMContentLoaded', () => {
+    const elements = {
+        playEnabledLabel: document.getElementById('play_enabled_label'),
+        skipEnabledLabel: document.getElementById('skip_enabled_label'),
+        ntpEnabledLabel: document.getElementById('ntp_enabled_label'),
+        pageLabel: document.getElementById('page_label'),
+        pinTabLabel: document.getElementById('pin_tab_label'),
+        playLabel: document.getElementById('play_label'),
+        saveButton: document.getElementById('save'),
+        shortcutsButton: document.getElementById('shortcuts'),
+        pageSelect: document.getElementById('page'),
+        playSelect: document.getElementById('play')
+    };
 
-function saveOptions() {
-    chrome.storage.sync.set({
-        play_enabled: document.getElementById('play_enabled').checked,
-        skip_enabled: document.getElementById('skip_enabled').checked,
-        ntp_enabled: document.getElementById('ntp_enabled').checked,
-        pin_tab: document.getElementById('pin_tab').checked,
-        play: document.getElementById('play').value,
-        page: document.getElementById('page').value
-    }, function() {
-        window.close();
+    elements.playEnabledLabel.innerHTML += chrome.i18n.getMessage('enable_play_pause');
+    elements.skipEnabledLabel.innerHTML += chrome.i18n.getMessage('enable_play_prev_next');
+    elements.ntpEnabledLabel.innerHTML += chrome.i18n.getMessage('show_ntp');
+    elements.pageLabel.innerHTML = `${chrome.i18n.getMessage('page_to_open')}: ${elements.pageLabel.innerHTML}`;
+    elements.pinTabLabel.innerHTML += chrome.i18n.getMessage('pin_tab');
+    elements.playLabel.innerHTML = `${chrome.i18n.getMessage('if_player_inactive')}: ${elements.playLabel.innerHTML}`;
+    elements.saveButton.innerHTML = chrome.i18n.getMessage('save');
+    elements.shortcutsButton.innerHTML = chrome.i18n.getMessage('shortcuts');
+
+    const pageOptions = [
+        'page_default', 'page_podcasts', 'page_discover', 'page_new_releases',
+        'page_in_progress', 'page_starred', 'page_files', 'page_none'
+    ];
+
+    pageOptions.forEach((option, index) => {
+        elements.pageSelect.options[index].text = chrome.i18n.getMessage(option);
     });
-}
 
-function restoreOptions() {
-    chrome.storage.sync.get({
+    const playOptions = ['play_first', 'play_last', 'play_random', 'play_none'];
+
+    playOptions.forEach((option, index) => {
+        elements.playSelect.options[index].text = chrome.i18n.getMessage(option);
+    });
+
+    const saveOptions = () => {
+        chrome.storage.sync.set({
+            play_enabled: document.getElementById('play_enabled').checked,
+            skip_enabled: document.getElementById('skip_enabled').checked,
+            ntp_enabled: document.getElementById('ntp_enabled').checked,
+            pin_tab: document.getElementById('pin_tab').checked,
+            play: document.getElementById('play').value,
+            page: document.getElementById('page').value
+        }, () => {
+            window.close();
+        });
+    };
+
+    const restoreOptions = () => {
+        chrome.storage.sync.get({
             play_enabled: true,
             skip_enabled: true,
             ntp_enabled: true,
             pin_tab: false,
             play: "first",
             page: "default"
-        },
-        function(items) {
+        }, (items) => {
             document.getElementById('play_enabled').checked = items.play_enabled;
             document.getElementById('skip_enabled').checked = items.skip_enabled;
             document.getElementById('ntp_enabled').checked = items.ntp_enabled;
@@ -49,16 +65,15 @@ function restoreOptions() {
             document.getElementById('play').value = items.play;
             document.getElementById('page').value = items.page;
         });
-}
+    };
 
-function openShortcuts() {
-    chrome.tabs.query({ active: true, lastFocusedWindow: true
-        },
-        function(tabs) {
+    const openShortcuts = () => {
+        chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
             chrome.tabs.update(tabs[0].id, { url: "chrome://extensions/configureCommands" });
         });
-}
+    };
 
-document.addEventListener('DOMContentLoaded', restoreOptions);
-document.getElementById('save').addEventListener('click', saveOptions);
-document.getElementById('shortcuts').addEventListener('click', openShortcuts);
+    restoreOptions();
+    elements.saveButton.addEventListener('click', saveOptions);
+    elements.shortcutsButton.addEventListener('click', openShortcuts);
+});

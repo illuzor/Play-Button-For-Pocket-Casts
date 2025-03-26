@@ -1,6 +1,6 @@
-function performSkip(type) {
-    let buttons = document.getElementsByClassName(type);
+const performSkip = (type) => {
+    const buttons = document.getElementsByClassName(type);
     if (buttons.length) {
         buttons[0].click();
     }
-}
+};

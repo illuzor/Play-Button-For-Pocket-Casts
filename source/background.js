@@ -4,20 +4,18 @@ const ACTION_PLAY = "play";
 const ACTION_FORWARD = "forward";
 const ACTION_BACK = "back";
 
-var pcTab;
-var playFromMediaKey;
-var action = null;
-var isFirstPlay = true
+let pcTab;
+let playFromMediaKey;
+let action = null;
+let isFirstPlay = true;
 
 chrome.action.onClicked.addListener(buttonClick);
 chrome.commands.onCommand.addListener(mediaButtonPress);
 
-chrome.runtime.onMessage.addListener(
-    function (request, sender, sendResponse) {
-        chrome.action.setIcon({path: "images/" + request.state + ".png"});
-        chrome.action.setTitle({title: chrome.i18n.getMessage(request.state)});
-    }
-);
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    chrome.action.setIcon({ path: "images/" + request.state + ".png" });
+    chrome.action.setTitle({ title: chrome.i18n.getMessage(request.state) });
+});
 
 gotoGetWindows();
 
@@ -42,37 +40,36 @@ function mediaButtonPress(command) {
 }
 
 function playButtonPress() {
-    chrome.storage.sync.get({play_enabled: true},
-        function (items) {
-            if (items.play_enabled) {
-                action = ACTION_PLAY;
-                playFromMediaKey = true;
-                gotoGetWindows();
-            }
-        });
+    chrome.storage.sync.get({ play_enabled: true }, (items) => {
+        if (items.play_enabled) {
+            action = ACTION_PLAY;
+            playFromMediaKey = true;
+            gotoGetWindows();
+        }
+    });
 }
 
 function skipButtonPress(skipDirection) {
-    chrome.storage.sync.get({skip_enabled: true},
-        function (items) {
-            if (items.skip_enabled) {
-                action = skipDirection;
-                gotoGetWindows();
-            }
-        });
+    chrome.storage.sync.get({ skip_enabled: true }, (items) => {
+        if (items.skip_enabled) {
+            action = skipDirection;
+            gotoGetWindows();
+        }
+    });
 }
 
 function gotoGetWindows() {
     pcTab = null;
-    chrome.windows.getAll({populate: true}, getWindows);
+    chrome.windows.getAll({ populate: true }, getWindows);
 }
 
 function getWindows(windows) {
-    var pcTabs = [];
-    for (var i = 0; i < windows.length; i++) {
-        for (var j = 0; j < windows[i].tabs.length; j++) {
-            if (windows[i].tabs[j].url.includes(URL))
-                pcTabs.push(windows[i].tabs[j]);
+    const pcTabs = [];
+    for (const window of windows) {
+        for (const tab of window.tabs) {
+            if (tab.url.includes(URL)) {
+                pcTabs.push(tab);
+            }
         }
     }
 
@@ -80,7 +77,7 @@ function getWindows(windows) {
         pcTab = pcTabs[0];
         performAction();
     } else {
-        if (action == ACTION_PLAY && !playFromMediaKey) {
+        if (action === ACTION_PLAY && !playFromMediaKey) {
             openNewTab();
         }
     }
@@ -90,10 +87,10 @@ function performAction() {
     switch (action) {
         case ACTION_PLAY:
             if (isFirstPlay) {
-                isFirstPlay = false
+                isFirstPlay = false;
                 setTimeout(performPlay, 100);
             } else {
-                performPlay()
+                performPlay();
             }
             break;
         case ACTION_FORWARD:
@@ -107,30 +104,31 @@ function performAction() {
 
 function performPlay() {
     chrome.scripting.executeScript({
-        target: {tabId: pcTab.id},
+        target: { tabId: pcTab.id },
         files: ["action-play.js"]
-    })
+    });
 }
 
 function openNewTab() {
-    chrome.action.setIcon({path: "images/Play.png"});
-    chrome.action.setTitle({title: chrome.i18n.getMessage("Play")});
-    chrome.storage.sync.get({page: "default"}, function (items) {
-        if (items.page != "none") {
-            var finalUrl = URL;
-            if (items.page != "default")
+    chrome.action.setIcon({ path: "images/Play.png" });
+    chrome.action.setTitle({ title: chrome.i18n.getMessage("Play") });
+    chrome.storage.sync.get({ page: "default" }, (items) => {
+        if (items.page !== "none") {
+            let finalUrl = URL;
+            if (items.page !== "default") {
                 finalUrl += items.page;
-            chrome.storage.sync.get({pin_tab: false}, function (items) {
-                chrome.tabs.create({url: finalUrl, pinned: items.pin_tab}, function (tab) { });
+            }
+            chrome.storage.sync.get({ pin_tab: false }, (items) => {
+                chrome.tabs.create({ url: finalUrl, pinned: items.pin_tab });
             });
         }
     });
 }
 
 function skip(type) {
-    chrome.scripting.executeScript({target: {tabId: pcTab.id}, files: ["action-skip.js"]}, () => {
+    chrome.scripting.executeScript({ target: { tabId: pcTab.id }, files: ["action-skip.js"] }, () => {
         chrome.scripting.executeScript({
-            target: {tabId: pcTab.id},
+            target: { tabId: pcTab.id },
             args: [type],
             func: (...args) => performSkip(...args),
         });
