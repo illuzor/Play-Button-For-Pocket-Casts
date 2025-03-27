@@ -6,12 +6,6 @@
     "version": "2.1.2",
     "author": "Artem Zanin",
     "default_locale": "en",
-    "applications": {
-        "gecko": {
-            "id": "illuzor@gmail.com",
-            "strict_min_version": "57.0"
-        }
-    },
     "icons": {
         "16": "images/Play.png",
         "48": "images/icon48.png",
@@ -53,11 +47,6 @@
             ]
         }
     ],
-    "externally_connectable": {
-        "matches": [
-            "*://*.pocketcasts.com/*"
-        ]
-    },
     "commands": {
         "play-pause": {
             "suggested_key": {
