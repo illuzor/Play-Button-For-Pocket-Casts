@@ -32,21 +32,11 @@
             ],
             "js": [
                 "action-play.js",
-                "action-skip.js",
-                "log-listener-injector.js"
+                "action-skip.js"
             ]
         }
     ],
-    "web_accessible_resources": [
-        {
-            "resources": [
-                "log-listener.js"
-            ],
-            "matches": [
-                "https://*/*"
-            ]
-        }
-    ],
+    "web_accessible_resources": [],
     "commands": {
         "play-pause": {
             "suggested_key": {
