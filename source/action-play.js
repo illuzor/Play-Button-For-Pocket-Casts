@@ -1,7 +1,7 @@
 ﻿(function () {
     const playButtons = [];
     const topButtons = document.querySelectorAll('[class^="EpisodePopupToolbarstyled__PlayButtonContainer"]');
-    const playButtonsBottom = document.querySelectorAll('[class^="AnimatedPlayButtonstyled"]');
+    const playButtonsBottom = document.querySelectorAll('.play_pause_button');
 
     for (let i = 0; i < topButtons.length; i++) {
         playButtons.push(topButtons[i]);
