@@ -20,21 +20,8 @@ pack_chrome() {
 
 # Making firefox.zip
 pack_ff() {
-  make_temp_ff
+  ./create_temp_ff.sh
   zip_ff
-}
-
-# Making temp firefox folder
-make_temp_ff() {
-  rm -rf "$TEMP_FOLDER"
-  mkdir -p "$TEMP_FOLDER"
-  cp -r "$SOURCE"/* "$TEMP_FOLDER"
-  rm -f "$TEMP_FOLDER/manifest.json"
-  rm -f "$TEMP_FOLDER/options.html"
-  rm -f "$TEMP_FOLDER/options.js"
-  cp "$SOURCE_FF/manifest.json" "$TEMP_FOLDER"
-  cp "$SOURCE_FF/options.html" "$TEMP_FOLDER"
-  cp "$SOURCE_FF/options.js" "$TEMP_FOLDER"
 }
 
 # Zipping firefox.zip
