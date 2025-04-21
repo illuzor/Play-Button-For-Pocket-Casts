@@ -2,9 +2,9 @@
     const playButtons = document.querySelectorAll('.play_pause_button');
 
     if (playButtons.length > 0) {
-        playButtons[playButtons.length - 1].click();
+        const mainPlayButton = playButtons[playButtons.length - 1];
+        mainPlayButton.click();
 
-        const mainPlayButton = playButtons[0];
         postButtonState(mainPlayButton.getAttribute('aria-pressed') === "true");
     } else {
         chrome.storage.sync.get({play: "first"}, function (items) {
@@ -14,7 +14,7 @@
 
     let mainPlayButton;
     if (typeof mainPlayButton === 'undefined') {
-        let mainPlayButton = playButtons[0];
+        let mainPlayButton = playButtons[playButtons.length - 1];
         listenForPlayState(mainPlayButton);
     }
 
