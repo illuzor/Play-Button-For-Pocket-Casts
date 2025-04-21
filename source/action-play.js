@@ -1,15 +1,10 @@
 ﻿(function () {
-    const playButtons = [];
-    const playButtonsBottom = document.querySelectorAll('.play_pause_button');
-
-    for (let i = 0; i < playButtonsBottom.length; i++) {
-        playButtons.push(playButtonsBottom[i]);
-    }
+    const playButtons = document.querySelectorAll('.play_pause_button');
 
     if (playButtons.length > 0) {
         playButtons[playButtons.length - 1].click();
 
-        const mainPlayButton = playButtonsBottom[0];
+        const mainPlayButton = playButtons[0];
         postButtonState(mainPlayButton.getAttribute('aria-pressed') === "true");
     } else {
         chrome.storage.sync.get({play: "first"}, function (items) {
@@ -19,7 +14,7 @@
 
     let mainPlayButton;
     if (typeof mainPlayButton === 'undefined') {
-        let mainPlayButton = playButtonsBottom[0];
+        let mainPlayButton = playButtons[0];
         listenForPlayState(mainPlayButton);
     }
 
