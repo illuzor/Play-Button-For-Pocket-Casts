@@ -20,7 +20,7 @@
         "scripting"
     ],
     "host_permissions": [
-        "https://play.pocketcasts.com/*/"
+        "https://pocketcasts.com/*/"
     ],
     "background": {
         "service_worker": "background.js"
@@ -28,7 +28,7 @@
     "content_scripts": [
         {
             "matches": [
-                "https://play.pocketcasts.com/*/"
+                "https://pocketcasts.com/*/"
             ],
             "js": [
                 "action-play.js",
