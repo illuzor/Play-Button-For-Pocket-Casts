@@ -12,6 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
         playSelect: document.getElementById('play')
     };
 
+    const isFirefox = chrome.runtime.getURL('').startsWith('moz-extension://');
+    const canOpenShortcutSettings = typeof chrome.commands.openShortcutSettings === 'function';
+
     elements.playEnabledLabel.innerHTML += chrome.i18n.getMessage('enable_play_pause');
     elements.skipEnabledLabel.innerHTML += chrome.i18n.getMessage('enable_play_prev_next');
     elements.ntpEnabledLabel.innerHTML += chrome.i18n.getMessage('show_ntp');
@@ -68,12 +71,19 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const openShortcuts = () => {
-        chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
-            chrome.tabs.update(tabs[0].id, { url: "chrome://extensions/configureCommands" });
-        });
+        if (canOpenShortcutSettings) {
+            chrome.commands.openShortcutSettings();
+            return;
+        }
+
+        chrome.tabs.create({ url: 'chrome://extensions/shortcuts' });
     };
 
     restoreOptions();
     elements.saveButton.addEventListener('click', saveOptions);
-    elements.shortcutsButton.addEventListener('click', openShortcuts);
+    if (isFirefox && !canOpenShortcutSettings) {
+        elements.shortcutsButton.hidden = true;
+    } else {
+        elements.shortcutsButton.addEventListener('click', openShortcuts);
+    }
 });

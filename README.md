@@ -7,6 +7,12 @@ Play-Button-For-Pocket-Casts 2
 
 [![Firefox extension](https://github.com/user-attachments/assets/2f4c0cc4-cc0e-440f-816f-690862ac5b3c)](https://addons.mozilla.org/addon/play-button-for-pocketcasts/)
 
+## Build
+
+Run `bash build.sh` to create `release/chrome.zip` and `release/firefox.zip`.
+The extension code is shared between both browsers; `source_ff/manifest.json`
+contains the Firefox-specific Manifest V3 settings.
+
 ## Description
 
 This extension allows controlling playing of a current podcast on pocketcasts site by button and by keyboard media keys.
