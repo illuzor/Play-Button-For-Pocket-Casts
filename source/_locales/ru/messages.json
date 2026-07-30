@@ -32,8 +32,8 @@
     "page_default": {
         "message": "По-умолчанию"
     },
-    "page_podcasts": {
-        "message": "Подкасты"
+    "page_playlists": {
+        "message": "Плейлисты"
     },
     "page_discover": {
         "message": "Рекомендации"
@@ -47,8 +47,11 @@
     "page_starred": {
         "message": "Избранное"
     },
-    "page_files": {
-        "message": "Файлы"
+    "page_bookmarks": {
+        "message": "Закладки"
+    },
+    "page_history": {
+        "message": "История"
     },
     "page_none": {
         "message": "Отключено"

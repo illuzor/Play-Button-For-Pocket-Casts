@@ -25,8 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
     elements.shortcutsButton.innerHTML = chrome.i18n.getMessage('shortcuts');
 
     const pageOptions = [
-        'page_default', 'page_podcasts', 'page_discover', 'page_new_releases',
-        'page_in_progress', 'page_starred', 'page_files', 'page_none'
+        'page_default', 'page_playlists', 'page_discover', 'page_new_releases',
+        'page_in_progress', 'page_starred', 'page_bookmarks', 'page_history', 'page_none'
     ];
 
     pageOptions.forEach((option, index) => {

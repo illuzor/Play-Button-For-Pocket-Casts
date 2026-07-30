@@ -32,8 +32,8 @@
     "page_default": {
         "message": "Default"
     },
-    "page_podcasts": {
-        "message": "Podcasts"
+    "page_playlists": {
+        "message": "Playlists"
     },
     "page_discover": {
         "message": "Discover"
@@ -47,8 +47,11 @@
     "page_starred": {
         "message": "Starred"
     },
-    "page_files": {
-        "message": "Files"
+    "page_bookmarks": {
+        "message": "Bookmarks"
+    },
+    "page_history": {
+        "message": "History"
     },
     "page_none": {
         "message": "Disabled"
