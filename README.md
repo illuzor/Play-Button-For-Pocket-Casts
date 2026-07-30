@@ -7,11 +7,29 @@ Play-Button-For-Pocket-Casts 2
 
 [![Firefox extension](https://github.com/user-attachments/assets/2f4c0cc4-cc0e-440f-816f-690862ac5b3c)](https://addons.mozilla.org/addon/play-button-for-pocketcasts/)
 
-## Build
+## Pack
 
 Run `bash build.sh` to create `release/chrome.zip` and `release/firefox.zip`.
 The extension code is shared between both browsers; `source_ff/manifest.json`
 contains the Firefox-specific Manifest V3 settings.
+
+## Local development
+
+### Chrome
+
+1. Open [chrome://extensions](chrome://extensions).
+2. Enable **Developer mode**.
+3. Click **Load unpacked** and select the `source` directory.
+
+### Firefox
+
+1. Run `bash build.sh`.
+2. Open [about:debugging#/runtime/this-firefox](about:debugging#/runtime/this-firefox).
+3. Click **Load Temporary Add-on** and select `release/firefox.zip` in the file picker.
+
+Do not open the ZIP directly: Firefox treats that as a regular, signed add-on.
+Temporary add-ons are removed after restarting Firefox; use **Reload** on the
+`about:debugging` page after rebuilding.
 
 ## Description
 
