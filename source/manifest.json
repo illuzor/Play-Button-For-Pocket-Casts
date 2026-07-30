@@ -31,7 +31,6 @@
                 "https://pocketcasts.com/*/"
             ],
             "js": [
-                "action-play.js",
                 "action-skip.js"
             ]
         }

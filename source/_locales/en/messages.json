@@ -68,6 +68,12 @@
     "ntp": {
         "message": "Nothing to play =("
     },
+    "activation_required": {
+        "message": "Your browser blocks audio until you interact with the page. This prevents unexpected playback."
+    },
+    "activation_play": {
+        "message": "Click anywhere to activate the page and start playback"
+    },
     "Play": {
         "message": "Play"
     },
