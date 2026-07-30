@@ -1,21 +1,89 @@
 ﻿(function () {
     const playButtons = document.querySelectorAll('.play_pause_button');
 
-    if (playButtons.length > 0) {
-        const mainPlayButton = playButtons[playButtons.length - 1];
-        mainPlayButton.click();
+    const startPlayback = function () {
+        if (playButtons.length > 0) {
+            const mainPlayButton = playButtons[playButtons.length - 1];
+            mainPlayButton.click();
 
-        postButtonState(mainPlayButton.getAttribute('aria-pressed') === "true");
+            postButtonState(mainPlayButton.getAttribute('aria-pressed') === "true");
+        } else {
+            chrome.storage.sync.get({play: "first"}, function (items) {
+                playNewPodcast(items.play);
+            });
+        }
+    };
+
+    if (navigator.userActivation && !navigator.userActivation.hasBeenActive) {
+        showActivationPrompt(startPlayback);
     } else {
-        chrome.storage.sync.get({play: "first"}, function (items) {
-            playNewPodcast(items.play);
-        });
+        startPlayback();
     }
 
     let mainPlayButton;
     if (typeof mainPlayButton === 'undefined') {
         let mainPlayButton = playButtons[playButtons.length - 1];
         listenForPlayState(mainPlayButton);
+    }
+
+    function showActivationPrompt(startPlayback) {
+        const promptId = 'play-button-for-pocket-casts-activation';
+        if (document.getElementById(promptId)) {
+            return;
+        }
+
+        const prompt = document.createElement('div');
+        prompt.id = promptId;
+        Object.assign(prompt.style, {
+            position: 'fixed',
+            inset: '0',
+            zIndex: '2147483647',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '24px',
+            background: 'rgba(0, 0, 0, .72)',
+            color: '#fff',
+            font: '18px sans-serif',
+            cursor: 'pointer',
+            pointerEvents: 'all'
+        });
+
+        const card = document.createElement('div');
+        Object.assign(card.style, {
+            maxWidth: '460px',
+            padding: '28px',
+            borderRadius: '12px',
+            background: '#292b2e',
+            textAlign: 'center',
+            lineHeight: '1.45',
+            boxShadow: '0 8px 32px rgba(0, 0, 0, .5)'
+        });
+
+        const message = document.createElement('div');
+        message.textContent = chrome.i18n.getMessage('activation_required');
+
+        const hint = document.createElement('div');
+        hint.textContent = chrome.i18n.getMessage('activation_play');
+        Object.assign(hint.style, {
+            marginTop: '18px',
+            fontWeight: '600',
+            fontSize: '20px'
+        });
+
+        function activate(event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            window.removeEventListener('click', activate, true);
+            prompt.remove();
+            startPlayback();
+        }
+
+        window.addEventListener('click', activate, true);
+
+        card.append(message, hint);
+        prompt.append(card);
+        document.body.append(prompt);
     }
 
     function listenForPlayState(mainPlayButton) {
